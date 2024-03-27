@@ -1,37 +1,120 @@
 ---
-title: "An Engaging Talk" 
+title: "Dynamic Assessment of Self-Efficacy Predicts Future Alcohol Use" 
 author: "Gaylen Fronk, M.S."
 institute: "University of Wisconsin-Madison"
 format: 
   revealjs:
     scrollable: true
-    chalkboard: true
+    chalkboard: false
     css: slides.css
     background-color: dark-gray
 fig-cap-location: top
 editor_options: 
   chunk_output_type: console
 ---
-## Mental Healthcare Needs are High and Unmet {.smaller}
+## Acknowledgements {.smaller}
 
-- In 2019, [52 million]{style="color: red;"} Americans had an active mental illness
-  - More than half did not receive any [treatment]{style="color: red;"}
+:::: {.columns}
 
-::: {.notes}
-We have a mental health crisis in the U.S. and it is a crisis of **unmet** high need because our delivery of mental healthcare is deeply flawed. 
-
-In 2019, **more than half of the 52 million Americans** with an active mental illness did not receive any treatment. **More than half**!
+::: {.column width="40%"}
+- Project Co-Authors
+  - Ariela Papp
+  - Kendra Wyant
+  - Sarah Sant'Ana
+  - John Curtin (PI)
 :::
 
+::: {.column width="60%"}
+- Parent Project
+  - Susan Wanta (project administration, data curation)
+  - Candace Lightheart (data collection)
+  - Kerry Keiser (data collection)
+  - Megan Schultz (data collection)
+  - Jill Nagler (data collection)
+  - Chris Gioia (clinical supervision)
+  - Xiaojin (Jerry) Zhu (project conceptualization, analyses)
+:::
 
+::::
+
+- Funding
+  - This research was supported by grants from the NIAAA (R01 AA024391; Curtin) and the NIDA (R01 DA047315; Curtin)
+  - This investigator was supported by a grant from the NIDA (F31 DA056144; Fronk)
+  
+## Background...
+
+## Nature of AUD
+
+- AUDs/SUDs are problematic and prevalent, and they require lifelong care/monitoring
+
+## Self-monitoring definition
+
+- Self-monitoring = insight = confidence in remaining abstinent/pursuing treatment goals
+- In our study: "How likely are you to drink alcohol in the next week?"
+
+## Self-monitoring during AUD recovery
+
+- There is a strongly held belief that self-monitoring is a valuable and necessary tool during recovery
+  - Encouraged by clinicians
+  - Prompted by many self-help tools/apps/etc.
+  - Considered to be a productive component of CBT in the treatment of SUDs
+  
+- However, there is **insufficient evidence** and/or **insufficient nuance** to guide how monitoring should be implemented
+  - Data are somewhat limited & findings are mixed (check Ariela's articles, not sure her reviews are exactly on-topic)
+
+## Static measurement
+
+- Self-monitoring has traditionally been measured statically
+  - Measures like the AASE are often used to assess an individual's "long-term" likelihood of remaining abstinent
+  - Scores from measures like the AASE may be used at the end of treatment/end of study/etc. to estimate an individual's future likelihood of staying abstinent
+
+It is **unclear how well static measures like the AASE predict future lapse and relapse outcomes**.
+
+## Dynamic process of relapse
+
+Static or one-time measurement stands in conflict with what we know about the dynamic relapse prevention model
+
+- Risk of lapse/relapse is best understood **dynamically**
+  - Relapse prevention model
+  - Fluctuating risk over time due to fluctuating proximal and distal risk factors that interact fluidly with one another
+- Thus, *self-monitoring dynamic risk of lapse likely requires dense, dynamic assessment to be effective*
+
+## EMA as a tool for dynamic assessment
+
+- Ecological momentary assessment (EMA) offers a method by which individuals can self-monitor densely and longitudinally
+- Continuous monitoring with EMA can be embedded within a digital therapeutic context that can allow:
+  - Simultaneous monitoring of other risk factors
+  - Access to supports and tools to be used throughout recovery
+
+
+
+## Study Purpose
+
+:::{.columns}
+
+::::{.column width="50%"}
+The purpose of this project was to determine:
+
+1. How accurately individuals could self-monitor their risk of alcohol lapse in the next week
+
+2. Whether dynamic self-monitoring offers greater predictive value than static risk assessment
+
+3. Whether that models that take advantage of full EMA data and feature engineering can predict lapse risk more accurately than self-monitoring alone
+::::
+
+::::{.column width="50%"}
+second column for pop-up explanation of each point in first column?
+::::
+
+:::
 
 ## Mental Healthcare Needs are High and Unmet {.smaller}
 
-- [In 2019, 52 million Americans had an active mental illness]{style="color: grey;"}
+- [In 2019, 52 million Americans had an active mental illness]{.yellow}
   - [More than half did not receive any treatment]{style="color: grey;"}
 
 
-- [20 million]{style="color: red;"} adults had an active substance use disorder
+- [20 million]{.yellow} adults had an active substance use disorder
   - 9 out of 10 did not receive any treatment
 
 
