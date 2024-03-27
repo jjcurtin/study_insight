@@ -30,6 +30,7 @@ main, menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
   font-weight: 500 !important;
   font-size: 25px !important;
+  color: #ffffff !important;
 }
 
 body {
