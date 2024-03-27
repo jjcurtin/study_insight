@@ -1,0 +1,496 @@
+---
+title: "Evaluate models' performance in held out outer folds for version `r version`"
+author: "Gaylen Fronk, John Curtin, & Kendra Wyant"
+date: "`r lubridate::today()`"
+output: 
+  html_document:
+    toc: true 
+    toc_depth: 4
+format:
+  html:
+    embed-resources: true
+editor_options: 
+  chunk_output_type: console
+---
+
+### Code Status
+
+In use with iterative improvement
+
+### Notes
+This is a generic script that reproduces the CV metrics for the best model configuration, calculates various performance metrics from that resampling, makes plots, and then fits the best config to the final sample to do feature importance.
+
+
+### Set Up Environment
+
+```{r set_values}
+study <- "insight"
+version <- "v2"
+cv <- "nested"
+```
+
+Function conflicts
+```{r, packages_workflow}
+#| message: false
+#| warning: false
+
+# source
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/fun_ml.R?raw=true")
+
+# handle conflicts
+options(conflicts.policy = "depends.ok")
+tidymodels_conflictRules()
+```
+
+Packages for script
+```{r, packages_script}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(tidymodels)
+library(tidyposterior)
+# library(SHAPforxgboost)
+# library(rstanarm)
+
+theme_set(theme_classic()) 
+```
+
+Source support functions
+```{r source_functions}
+# EDA
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/fun_eda.R?raw=true")
+
+# CHTC support functions
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/chtc/static_files/fun_chtc.R?raw=true")
+```
+
+
+Absolute paths
+```{r, absolute_paths}
+switch (Sys.info()[['sysname']],
+        # PC paths
+        Windows = {
+          path_input <- str_c("P:/studydata/risk/chtc/", study)
+          path_processed <- str_c("P:/studydata/risk/data_processed/", study)
+          path_models <- str_c("P:/studydata/risk/models/", study)
+          path_knits <- str_c("P:/studydata/risk/knits/", study)},
+        
+        # IOS paths
+        Darwin = {
+          path_input <- str_c("/Volumes/private/studydata/risk/chtc/", study)
+          path_processed <- str_c("/Volumes/private/studydata/risk/data_processed/",
+                                  study)
+          path_models <- str_c("/Volumes/private/studydata/risk/models/", study)
+          path_knits <- str_c("/Volumes/private/studydata/risk/knits/", study)},
+        
+        # Linux paths
+        Linux = {
+          path_input <- str_c("~/mnt/private/studydata/risk/chtc/", study)
+          path_processed <- str_c("~/mnt/private/studydata/risk/data_processed/",
+                                  study)
+          path_models <- str_c("~/mnt/private/studydata/risk/models/", study)
+          path_knits <- str_c("~/mnt/private/studydata/risk/knits/", study)}
+)
+```
+
+
+Chunk Defaults
+```{r defaults}
+#| include: false
+
+knitr::opts_chunk$set(attr.output='style="max-height: 500px;"')
+
+options(tibble.width = Inf)
+options(tibble.print_max = Inf)
+```
+
+
+Source training controls 
+```{r source}
+# EDA
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/fun_eda.R?raw=true")
+
+# CHTC support functions
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/chtc/static_files/fun_chtc.R?raw=true")
+
+# ML functions
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/fun_ml.R?raw=true")
+
+```
+
+Knit to specific directory
+```{r, eval = FALSE, include=FALSE}
+# Render knit file manually to different location
+
+rmarkdown::render(input = file.path(
+  "insight/mak_scripts/3_eval_outer.qmd"),
+  output_dir = file.path(path_knits),
+  output_file = str_c("3_eval_outer_", version, ".html"),
+  env = new.env())
+```
+
+
+### Model Performance Metrics
+
+```{r read_metrics_preds}
+all_files <- list.files(path_models, full.names = TRUE) 
+preds_files <- all_files[str_detect(all_files, "outer_preds_") &
+                           str_detect(all_files, version)]
+
+preds_out <- preds_files |> 
+  map(\(file) read_rds(file) |> 
+        mutate(model = str_extract(file, "(?<=outer_preds_)[:graph:]+(?=_v2_)")) |> 
+        select(model, outer_split_num, prob_raw, label)) |> 
+  list_rbind()
+
+glimpse(preds_out)
+
+metrics_files <- all_files[str_detect(all_files, "outer_metrics_") & 
+                             str_detect(all_files, version)]
+
+metrics_out <- metrics_files |> 
+  map(\(file) read_rds(file) |> 
+        mutate(model = str_c(outcome, "_", feature_set))) |> 
+  list_rbind()
+
+glimpse(metrics_out)
+
+```
+
+#### Inner Loop AUC
+
+Best model configurations were selected using the median AUCs across 10 inner folds.  30 (3x10) models were selected.  
+
+```{r}
+metrics_out |> 
+  group_by(model) |> 
+  summarize(median(roc_auc_in), mean(roc_auc_in), min(roc_auc_in), max(roc_auc_in), sd(roc_auc_in))
+```
+
+#### Outer AUC
+
+Best model configurations were evaluated using the AUCs from the 30 (3x10) outer folds
+
+Outer overall
+```{r metrics_out}
+metrics_out |> 
+  group_by(model) |> 
+  summarize(median(roc_auc), mean(roc_auc))
+```
+
+Side by side of inner & outer median AUCs
+```{r}
+metrics_out |> 
+  group_by(model) |> 
+  summarize(median(roc_auc), median(roc_auc_in))
+```
+
+Plot outer folds
+```{r plot_outer}
+# histograms faceted by model
+metrics_out |> 
+  ggplot(aes(x = roc_auc)) +
+  geom_histogram(bins = 10) +
+  facet_wrap(vars(model), ncol = 2)
+
+# overlaid density plots
+med_roc <- metrics_out |> 
+  group_by(model) |> 
+  summarize(median = median(roc_auc))
+
+metrics_out |> 
+  ggplot(aes(x = roc_auc, fill = as.factor(model))) +
+  geom_density(alpha = 0.5) +
+  geom_vline(data = med_roc, aes(xintercept = median, 
+                                 color = as.factor(model)), linewidth = 1) +
+  labs(fill = "Model", color = "Model")
+```
+
+Table for each outer fold
+```{r metrics_out_kbl}
+models <- unique(metrics_out$model)
+
+metrics_out |> 
+  filter(model == "1week_all") |> 
+  print_kbl()
+
+metrics_out |> 
+  filter(model == "1week_insight_only") |> 
+  print_kbl()
+
+metrics_out |> 
+  filter(model == "1week_aase_only") |> 
+  print_kbl()
+
+metrics_out |> 
+  filter(model == "dichotomous_aase_only") |> 
+  print_kbl()
+
+```
+
+#### Outer individual metrics
+
+*1 week / all features model*
+
+Default threshold (0.5)
+```{r}
+
+(cm <- preds_out |> 
+   filter(model == "1week_all") |> 
+   mutate(estimate = if_else(prob_raw > .5, "Lapse", "No lapse"), # note changed from prob_beta while debugging
+          estimate = factor(estimate, levels = c("Lapse", "No lapse"))) |> 
+   conf_mat(truth = label, estimate = estimate))
+
+cm %>% 
+  autoplot() +
+  theme(axis.text = element_text(size = rel(1.50)), 
+        axis.title = element_text(size = rel(1.75)))
+
+cm %>% summary()
+
+```
+
+Confusion matrix at optimal cut-point (based on Youdens J index)
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1444894/
+https://pubmed.ncbi.nlm.nih.gov/15405679/
+
+```{r}
+roc_data <- preds_out %>%
+  filter(model == "1week_all") |> 
+  roc_curve(prob_raw, truth = label)
+
+j_thres_roc <- roc_data |> 
+  mutate(j = sensitivity + specificity - 1) |> 
+  slice_max(j) |> 
+  print() |> 
+  pull(.threshold)
+
+(cm <- preds_out |> 
+    filter(model == "1week_all") |> 
+    mutate(estimate = if_else(prob_raw > j_thres_roc, "Lapse", "No lapse"), # note changed from prob_beta while debugging
+           estimate = factor(estimate, levels = c("Lapse", "No lapse"))) |> 
+    conf_mat(truth = label, estimate = estimate))
+
+cm %>% 
+  autoplot() +
+  theme(axis.text = element_text(size = rel(1.50)), 
+        axis.title = element_text(size = rel(1.75)))
+
+cm %>% summary()
+```
+
+*1 week / insight_only model*
+
+Default threshold (0.5)
+```{r}
+
+(cm <- preds_out |> 
+   filter(model == "1week_insight_only") |> 
+   mutate(estimate = if_else(prob_raw > .5, "Lapse", "No lapse"), # note changed from prob_beta while debugging
+          estimate = factor(estimate, levels = c("Lapse", "No lapse"))) |> 
+   conf_mat(truth = label, estimate = estimate))
+
+cm %>% 
+  autoplot() +
+  theme(axis.text = element_text(size = rel(1.50)), 
+        axis.title = element_text(size = rel(1.75)))
+
+cm %>% summary()
+
+```
+
+Confusion matrix at optimal cut-point (based on Youdens J index)
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1444894/
+https://pubmed.ncbi.nlm.nih.gov/15405679/
+
+```{r}
+roc_data <- preds_out %>%
+  filter(model == "1week_insight_only") |> 
+  roc_curve(prob_raw, truth = label)
+
+j_thres_roc <- roc_data |> 
+  mutate(j = sensitivity + specificity - 1) |> 
+  slice_max(j) |> 
+  print() |> 
+  pull(.threshold)
+
+(cm <- preds_out |> 
+    filter(model == "1week_insight_only") |> 
+    mutate(estimate = if_else(prob_raw > j_thres_roc, "Lapse", "No lapse"), # note changed from prob_beta while debugging
+           estimate = factor(estimate, levels = c("Lapse", "No lapse"))) |> 
+    conf_mat(truth = label, estimate = estimate))
+
+cm %>% 
+  autoplot() +
+  theme(axis.text = element_text(size = rel(1.50)), 
+        axis.title = element_text(size = rel(1.75)))
+
+cm %>% summary()
+```
+
+*1 week / aase_only model*
+
+Default threshold (0.5)
+```{r }
+
+(cm <- preds_out |> 
+   filter(model == "1week_aase_only") |> 
+   mutate(estimate = if_else(prob_raw > .5, "Lapse", "No lapse"), # note changed from prob_beta while debugging
+          estimate = factor(estimate, levels = c("Lapse", "No lapse"))) |> 
+   conf_mat(truth = label, estimate = estimate))
+
+cm %>% 
+  autoplot() +
+  theme(axis.text = element_text(size = rel(1.50)), 
+        axis.title = element_text(size = rel(1.75)))
+
+cm %>% summary()
+
+```
+
+Confusion matrix at optimal cut-point (based on Youdens J index)
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1444894/
+https://pubmed.ncbi.nlm.nih.gov/15405679/
+
+```{r }
+roc_data <- preds_out %>%
+  filter(model == "1week_aase_only") |> 
+  roc_curve(prob_raw, truth = label)
+
+j_thres_roc <- roc_data |> 
+  mutate(j = sensitivity + specificity - 1) |> 
+  slice_max(j) |> 
+  print() |> 
+  pull(.threshold)
+
+(cm <- preds_out |> 
+    filter(model == "1week_aase_only") |> 
+    mutate(estimate = if_else(prob_raw > j_thres_roc, "Lapse", "No lapse"), # note changed from prob_beta while debugging
+           estimate = factor(estimate, levels = c("Lapse", "No lapse"))) |> 
+    conf_mat(truth = label, estimate = estimate))
+
+cm %>% 
+  autoplot() +
+  theme(axis.text = element_text(size = rel(1.50)), 
+        axis.title = element_text(size = rel(1.75)))
+
+cm %>% summary()
+```
+
+*Dichotomous / aase_only model*
+
+Default threshold (0.5)
+```{r }
+
+(cm <- preds_out |> 
+   filter(model == "dichotomous_aase_only") |> 
+   mutate(estimate = if_else(prob_raw > .5, "Lapse", "No lapse"), # note changed from prob_beta while debugging
+          estimate = factor(estimate, levels = c("Lapse", "No lapse"))) |> 
+   conf_mat(truth = label, estimate = estimate))
+
+cm %>% 
+  autoplot() +
+  theme(axis.text = element_text(size = rel(1.50)), 
+        axis.title = element_text(size = rel(1.75)))
+
+cm %>% summary()
+
+```
+
+Confusion matrix at optimal cut-point (based on Youdens J index)
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1444894/
+https://pubmed.ncbi.nlm.nih.gov/15405679/
+
+```{r }
+roc_data <- preds_out %>%
+  filter(model == "dichotomous_aase_only") |> 
+  roc_curve(prob_raw, truth = label)
+
+j_thres_roc <- roc_data |> 
+  mutate(j = sensitivity + specificity - 1) |> 
+  slice_max(j) |> 
+  print() |> 
+  pull(.threshold)
+
+(cm <- preds_out |> 
+    filter(model == "dichotomous_aase_only") |> 
+    mutate(estimate = if_else(prob_raw > j_thres_roc, "Lapse", "No lapse"), # note changed from prob_beta while debugging
+           estimate = factor(estimate, levels = c("Lapse", "No lapse"))) |> 
+    conf_mat(truth = label, estimate = estimate))
+
+cm %>% 
+  autoplot() +
+  theme(axis.text = element_text(size = rel(1.50)), 
+        axis.title = element_text(size = rel(1.75)))
+
+cm %>% summary()
+```
+
+### Feature Importance
+
+#### Grouped Features
+
+```{r read_shaps_grp}
+shaps_files <- all_files[str_detect(all_files, "outer_shapsgrp") &
+                           str_detect(all_files, version)]
+
+shapsgrp_out <- shaps_files |> 
+  map(\(file) read_rds(file) |> 
+        mutate(model = str_extract(file, 
+                                   "(?<=outer_shapsgrp_)[:graph:]+(?=_v2_)"))) |> 
+  list_rbind()
+
+glimpse(shapsgrp_out)
+```
+
+Global importance Shapley value plot for grouped features
+
+*1 week / all features model*
+```{r }
+shapsgrp_out %>% 
+  filter(model == "1week_all") |> 
+  group_by(variable_grp) %>% 
+  summarize(mean_value = mean(abs(value)), .groups = "drop") %>% 
+  arrange(mean_value) %>% 
+  mutate(variable_grp = factor(variable_grp),
+         variable_grp = fct_inorder(variable_grp)) %>% 
+  ggplot(mapping = aes(x = variable_grp, y = mean_value)) +
+  geom_point(size = 2, color = "red") +
+  geom_segment(aes(x = variable_grp, y = mean_value, xend = variable_grp), 
+               yend = 0, colour = "grey50")  +
+  ylab("Mean |Shapley value|") +
+  coord_flip()
+```
+
+Sina plot for grouped features
+
+*1 week / all features model*
+```{r}
+# downsample to 10% of observations for plot
+ids <- shapsgrp_out |> 
+  filter(model == "1week_all") |> 
+  pull(id_obs) |> 
+  unique()
+ids <- ids |> 
+  sample(size = round(length(ids)/(1/.1)))
+
+shapsgrp_out |> 
+  filter(model == "1week_all" & id_obs %in% ids) |> 
+  group_by(variable_grp) |> 
+  mutate(variable_grp = factor(variable_grp)) |> 
+  ggplot(mapping = aes(x = variable_grp, y = value)) +
+  ggforce::geom_sina(method = "counts", maxwidth = 0.7, alpha = 0.4) +
+  geom_hline(yintercept = 0) +
+  scale_y_continuous(limits = c(-2, 3), breaks = seq(-2, 3)) +
+  ylab("Shapley value") +
+  xlab("") +
+  theme(axis.text = element_text(size = 9.5)) +
+  coord_flip()
+
+```
+
