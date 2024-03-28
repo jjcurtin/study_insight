@@ -148,26 +148,20 @@ font-size: 0.7em !important;
 font-size: 0.85em !important;
 }
 
-
-.red {
-  color: red;
-}
-
 .yellowb {
-  background-color: yellow;
+  background-color: yellow !important;
 }
 
 .yellow {
-  color: #FFFF00;
+  color: #FFFF00 !important;
 }
 
-
-.green {
-  color: green;
+.purple {
+  color: #5D3FD3 !important;
 }
 
-.blue {
-  color: blue;
+.lavender {
+  color: #E6E6FA !important;
 }
 
 .reveal .cell-output pre code {
