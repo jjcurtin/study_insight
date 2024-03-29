@@ -43,88 +43,151 @@ editor_options:
   
 ## Background...
 
-## Nature of AUD
-
-- AUDs/SUDs are problematic and prevalent, and they require lifelong care/monitoring
-
-## Self-monitoring definition
-
-- Self-monitoring = insight = confidence in remaining abstinent/pursuing treatment goals
 - In our study: "How likely are you to drink alcohol in the next week?"
 
 ## Self-monitoring during AUD recovery
 
-- There is a strongly held belief that self-monitoring is a valuable and necessary tool during recovery
+[Self-monitoring]{.yellow} is a tool to increase conscious awareness about one's own *present* or *future* behavior
+
+:::{.notes}
+Self-monitoring = insight = confidence/likelihood of behaviors
+
+It can bring about awareness of current behaviors, but it can also encourage thinking about the likelihood of future behaviors
+:::
+
+## Self-monitoring during AUD recovery
+
+[Self-monitoring]{.yellow} is a tool to increase conscious awareness about one's own present or [*future*]{.yellow} behavior
+
+:::{.notes}
+In the case of AUD, self-monitoring is often used to increase awareness about CURRENT RISK of FUTURE ALCOHOL USE
+:::
+
+## Self-monitoring during AUD recovery
+
+- Self-monitoring is...
   - Encouraged by clinicians
   - Prompted by many self-help tools/apps/etc.
-  - Considered to be a productive component of CBT in the treatment of SUDs
-  
-- However, there is **insufficient evidence** and/or **insufficient nuance** to guide how monitoring should be implemented
-  - Data are somewhat limited & findings are mixed (check Ariela's articles, not sure her reviews are exactly on-topic)
+  - Considered to be a productive component of CBT in the treatment of substance use disorders
 
+:::{.notes}
+There is a strongly held belief that self-monitoring is valuable and even necessary tool during recovery from alcohol use disorder (AUD) and other substance use disorders
+:::
 ## Static measurement
 
 - Self-monitoring has traditionally been measured statically
-  - Measures like the AASE are often used to assess an individual's "long-term" likelihood of remaining abstinent
+  - Measures like the Alcohol Abstinence Self-Efficacy Scale (AASE) are often used to assess an individual's "long-term" likelihood of remaining abstinent
   - Scores from measures like the AASE may be used at the end of treatment/end of study/etc. to estimate an individual's future likelihood of staying abstinent
 
 It is **unclear how well static measures like the AASE predict future lapse and relapse outcomes**.
 
-## Dynamic process of relapse
+:::{.footer}
+reference for AASE brief version
+:::
 
-Static or one-time measurement stands in conflict with what we know about the dynamic relapse prevention model
+## Recovery as a dynamic process
 
 - Risk of lapse/relapse is best understood **dynamically**
-  - Relapse prevention model
+  - Relapse prevention model has been updated to reflect dynamic processes
   - Fluctuating risk over time due to fluctuating proximal and distal risk factors that interact fluidly with one another
 - Thus, *self-monitoring dynamic risk of lapse likely requires dense, dynamic assessment to be effective*
 
-## EMA as a tool for dynamic assessment
+:::{.notes}
+Static or one-time measurement stands in conflict with what we know about the dynamic relapse prevention model
+:::
+
+## Dynamic self-monitoring via EMA
 
 - Ecological momentary assessment (EMA) offers a method by which individuals can self-monitor densely and longitudinally
 - Continuous monitoring with EMA can be embedded within a digital therapeutic context that can allow:
   - Simultaneous monitoring of other risk factors
   - Access to supports and tools to be used throughout recovery
+  
+## Dynamic self-monitoring via EMA
 
+> "How likely are you to drink alcohol in the next week?"
 
+Self-monitoring was...
+- **Dynamic**: Assessments occurred *daily*
+- **Cued**: Individuals were *prompted* to reflect on their risk
+- **Contextualized**: Self-monitoring question was situated within a 10-item EMA
+  - 6 questions assessing risk factors 
+  - 2 additional questions monitoring future behavior
+  - Self-monitoring item was the *final* item, requiring reflection on 9 relevant risk factors prior to answering
 
-## Study Purpose
+:::{.notes}
+In the current study, individuals self-monitored their risk for lapse back to alcohol use via daily EMA surveys that included the question "How likely are you to drink alcohol in the next week"
+
+Dynamic assessment - daily EMA allows for frequent updating
+
+(e.g., craving, affect)
+
+(e.g., likelihood of experiencing a stressful event)
+:::
+
+## Purpose
 
 :::{.columns}
 
-::::{.column width="50%"}
-The purpose of this project was to determine:
+::::{.column, width="40%"}
+The purpose of this project is to determine:
 
 1. How accurately individuals could self-monitor their risk of alcohol lapse in the next week
 
 2. Whether dynamic self-monitoring offers greater predictive value than static risk assessment
 
-3. Whether that models that take advantage of full EMA data and feature engineering can predict lapse risk more accurately than self-monitoring alone
+3. Whether models that take advantage of full EMA data and feature engineering can predict lapse risk more accurately than self-monitoring alone
+
 ::::
 
-::::{.column width="50%"}
-second column for pop-up explanation of each point in first column?
+::::{.column, width="60%"}
+<!--progress through brief explanations of each  
+1. brief overview: put question back up, model built from single predictor (kept "raw") matched to outcome of the same 1-week window, did they actually lapse. model performance = index of accuracy of their predictions
+
+2. compared that 1-predictor model to a model built from a single AASE measurement at study intake. 
+
+3. built model using all EMA data from the same study period (i.e., all questions) with more advanced feature engineering techniques to predict same 1-week outcome windows. compared how well we can predict using this "full" model to the dynamic assessment only model (how much better can we do if we take all the data into account, what else does it allow us to do with the outcome [treatment recs])
+-->
 ::::
 
 :::
 
-## Mental Healthcare Needs are High and Unmet {.smaller}
+<!--CONSIDER: "all" methods details upfront? or only necessary details for each purpose Q? might be less overwhelming that way, and not jumping back and forth re: relevance of methods details -->
 
-- [In 2019, 52 million Americans had an active mental illness]{.yellow}
-  - [More than half did not receive any treatment]{style="color: grey;"}
+## Participants
 
+brief bulleted overview
 
-- [20 million]{.yellow} adults had an active substance use disorder
-  - 9 out of 10 did not receive any treatment
+include demo table (take from Ariela's poster) or just bulleted notes about demo characteristics
 
+## EMA
 
-::: {.notes}
+more methods details here on EMA, all items, highlight SM question again
 
+discuss 4x daily component
 
-And for the 20 million adults suffering with a substance use disorder, it was worse still.
+timing
 
-**9 out of 10 without any treatment**
-:::
+## Lapse labels
 
+1-week windows tied to morning EMA submission
+
+procedure for creating labeled windows
+
+N windows lapse/no lapse
+
+## Analyses insight only models
+
+## AASE
+
+scoring
+
+time period it assesses for
+
+## Analyses model comparisons purpose 2
+
+## Feature engineering
+
+## Analyses model comparisons purpose 3
 
 
