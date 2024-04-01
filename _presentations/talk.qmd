@@ -47,7 +47,7 @@ editor_options:
 
 ## Self-monitoring during AUD recovery
 
-[Self-monitoring]{.yellow} is a tool to increase conscious awareness about one's own *present* or *future* behavior
+[Self-monitoring]{.purple} is a tool to increase conscious awareness about one's own *present* or *future* behavior
 
 :::{.notes}
 Self-monitoring = insight = confidence/likelihood of behaviors
@@ -57,7 +57,7 @@ It can bring about awareness of current behaviors, but it can also encourage thi
 
 ## Self-monitoring during AUD recovery
 
-[Self-monitoring]{.yellow} is a tool to increase conscious awareness about one's own present or [*future*]{.yellow} behavior
+[Self-monitoring]{.purple} is a tool to increase conscious awareness about one's own present or [*future*]{.yellow} behavior
 
 :::{.notes}
 In the case of AUD, self-monitoring is often used to increase awareness about CURRENT RISK of FUTURE ALCOHOL USE
@@ -79,7 +79,7 @@ There is a strongly held belief that self-monitoring is valuable and even necess
   - Measures like the Alcohol Abstinence Self-Efficacy Scale (AASE) are often used to assess an individual's "long-term" likelihood of remaining abstinent
   - Scores from measures like the AASE may be used at the end of treatment/end of study/etc. to estimate an individual's future likelihood of staying abstinent
 
-It is **unclear how well static measures like the AASE predict future lapse and relapse outcomes**.
+[It is **unclear how well static measures like the AASE predict future lapse and relapse outcomes**]{.purple}.
 
 :::{.footer}
 reference for AASE brief version
@@ -87,10 +87,10 @@ reference for AASE brief version
 
 ## Recovery as a dynamic process
 
-- Risk of lapse/relapse is best understood **dynamically**
+- Risk of lapse/relapse is best understood [**dynamically**[{.yellow}]
   - Relapse prevention model has been updated to reflect dynamic processes
   - Fluctuating risk over time due to fluctuating proximal and distal risk factors that interact fluidly with one another
-- Thus, *self-monitoring dynamic risk of lapse likely requires dense, dynamic assessment to be effective*
+- [Thus, *self-monitoring dynamic risk of lapse likely requires dense, dynamic assessment to be effective*]{.purple}
 
 :::{.notes}
 Static or one-time measurement stands in conflict with what we know about the dynamic relapse prevention model
@@ -108,12 +108,14 @@ Static or one-time measurement stands in conflict with what we know about the dy
 > "How likely are you to drink alcohol in the next week?"
 
 Self-monitoring was...
-- **Dynamic**: Assessments occurred *daily*
-- **Cued**: Individuals were *prompted* to reflect on their risk
-- **Contextualized**: Self-monitoring question was situated within a 10-item EMA
+- [**Dynamic**]{.purple}: Assessments occurred [*daily*]{.yellow}
+- [**Cued**]{.purple}: Individuals were [*prompted*]{.yellow} to reflect on their risk
+- [**Contextualized**]{.purple}: Self-monitoring question was situated [within a 10-item EMA]{.yellow}
   - 6 questions assessing risk factors 
   - 2 additional questions monitoring future behavior
-  - Self-monitoring item was the *final* item, requiring reflection on 9 relevant risk factors prior to answering
+  - Self-monitoring item was the [*final*]{.yellow} item, requiring reflection on 9 relevant risk factors prior to answering
+  
+<!-- consider if this slide is better suited as part of conclusions? re: WHY dynamic self-monitoring works well & works better than static measurement? -->
 
 :::{.notes}
 In the current study, individuals self-monitored their risk for lapse back to alcohol use via daily EMA surveys that included the question "How likely are you to drink alcohol in the next week"
@@ -127,9 +129,6 @@ Dynamic assessment - daily EMA allows for frequent updating
 
 ## Purpose
 
-:::{.columns}
-
-::::{.column, width="40%"}
 The purpose of this project is to determine:
 
 1. How accurately individuals could self-monitor their risk of alcohol lapse in the next week
@@ -138,45 +137,90 @@ The purpose of this project is to determine:
 
 3. Whether models that take advantage of full EMA data and feature engineering can predict lapse risk more accurately than self-monitoring alone
 
-::::
-
-::::{.column, width="60%"}
-<!--progress through brief explanations of each  
+<!--progress through brief explanations of each in second column
 1. brief overview: put question back up, model built from single predictor (kept "raw") matched to outcome of the same 1-week window, did they actually lapse. model performance = index of accuracy of their predictions
 
 2. compared that 1-predictor model to a model built from a single AASE measurement at study intake. 
 
 3. built model using all EMA data from the same study period (i.e., all questions) with more advanced feature engineering techniques to predict same 1-week outcome windows. compared how well we can predict using this "full" model to the dynamic assessment only model (how much better can we do if we take all the data into account, what else does it allow us to do with the outcome [treatment recs])
 -->
-::::
 
-:::
+<!--CONSIDER: "all" methods details upfront? or only necessary details for each purpose Q? might be less overwhelming that way, and not jumping back and forth re: relevance of methods details 
 
-<!--CONSIDER: "all" methods details upfront? or only necessary details for each purpose Q? might be less overwhelming that way, and not jumping back and forth re: relevance of methods details -->
+if so, maybe don't need pop-up second column on purpose slide, just return to it each time with new point "highlighted"-->
+
+## Purpose
+
+The purpose of this project is to determine:
+
+[1. How accurately individuals could self-monitor their risk of alcohol lapse in the next week]{.yellow}
+
+[2. Whether dynamic self-monitoring offers greater predictive value than static risk assessment]{.grayout}
+
+[3. Whether models that take advantage of full EMA data and feature engineering can predict lapse risk more accurately than self-monitoring alone]{.grayout}
 
 ## Participants
 
-brief bulleted overview
+- Participants in early recovery (1-8 weeks abstinence) from moderate or severe AUD with a goal of abstinence
 
-include demo table (take from Ariela's poster) or just bulleted notes about demo characteristics
+- Total sample: N = 151
+  - Age: mean = 41, range 21 - 72
+  - Sex: 49.0% female, 51.0% male
+  - Race: 86.8% White/Caucasian, 5.3% Black/African American, 4.6% Other/Multiracial, 2.0% American Indian/Alaska Native, 1.3% Asian
+  - Ethnicity: 97.4% Non-Hispanic, 2.6% Hispanic/Latino/Spanish origin
+  - Education: 10.0% High school degree or less, 36.5% Some college, 53.6% College or advanced degree
+  - Personal income: mean = 34,298, range 0 - 200,000
 
 ## EMA
 
-more methods details here on EMA, all items, highlight SM question again
+- This model used responses to a single EMA item:
 
-discuss 4x daily component
+> "How likely are you to drink alcohol in the next week?"
 
-timing
+- Participants responded on a 1 - 11 Likert scale with the following anchors:
+  - 1 Very unlikely
+  - 4-5 Unlikely
+  - 7-8 Likely
+  - 11 Very likely
+
+- This item appeared on an EMA sent 1X daily in the morning
+- Participants provided EMA data for up to 3 months
+
+## EMA
+
+
 
 ## Lapse labels
 
-1-week windows tied to morning EMA submission
+- Outcomes were created using an additional EMA item:
 
-procedure for creating labeled windows
+> "Have you drank any alcohol that you have not yet reported?
 
-N windows lapse/no lapse
+- If participants answered yes to this question, they were prompted to enter:
+  - The hour and date of the start of the drinking episode
+  - The hour and date of the end of the drinking episode
 
-## Analyses insight only models
+- Our outcomes were [one-week windows]{.yellow} that began immediately following the submission of the morning EMA
+  - Windows that contained any portion of a reported lapse were labeled as [lapse]{.purple}
+  - Windows that did not contain a lapse were labeled as [no lapse]{.purple}
+
+- Total N observations: 9845
+  - Lapse: 2442 (24.8%)
+  - No lapse: 7403 (75.2%)
+
+## Model training
+
+configurations (insight only)
+
+no feature engineering - just raw (most recent response)
+
+limited configurations bc of only 1 feature
+
+## Model selection & evaluation
+
+Explain performance metric auROC
+
+Evaluated based on held-out folds of nested CV
 
 ## AASE
 
@@ -185,6 +229,12 @@ scoring
 time period it assesses for
 
 ## Analyses model comparisons purpose 2
+
+## EMA
+
+more methods details here on EMA, all items
+
+discuss 4x daily component & timing
 
 ## Feature engineering
 
