@@ -208,21 +208,58 @@ The purpose of this project is to determine:
   - Lapse: 2442 (24.8%)
   - No lapse: 7403 (75.2%)
 
-## Model training
+## Model configurations
 
-- 
+- Predictor: most recent self-monitoring score (single predictor, no feature engineering)
+- Outcome: next-week drinking
 
-configurations (insight only)
+- Model configurations used the xgboost algorithm, various types of resampling, and sensible hyperparameter values
 
-no feature engineering - just raw (most recent response)
+:::{.notes}
+  - Algorithm xgboost (tree-based algorithm)
+  - Upsampling, downsampling, SMOTE, and no resampling to adjust majority/minority class ratios
+  - Sensible values for hyperparameters mtry, learning rate, and third??
+:::
 
-limited configurations bc of only 1 feature
+## Model training, selection, and evaluation
 
-## Model selection & evaluation
+::::{.columns}
 
-Explain performance metric auROC
+:::{.column, width="50%"}
+- Models are trained, selected, and evaluated using [nested k-fold cross-validation]{.yellow}
 
-Evaluated based on held-out folds of nested CV
+- Key details:
+  - Training, selection, and evaluation happens in different data
+  - Grouped by participant
+  - Produces 30 independent estimates of model performance in new data
+  
+- Model performance evaluated on [area under the ROC curve (auROC)]{.yellow}
+:::
+
+:::{.column, width="50%"}
+![](../images/cross_validation.png)
+:::
+
+::::
+
+:::{.notes}
+
+walk through CV illustration. highlight key points
+
+describe auROC in plain terms
+:::
+
+## Results: Accuracy of dynamic self-monitoring
+
+median ROC = 0.796 (round to 2 decimals so 0.80)
+
+figure - ROC curve? plot histogram of outer loop ROCs? posteriors around auROC? talk to john
+
+## Takeaways?
+
+decide if this should be here or just move into comparison (purpose 2)
+
+if here - maybe brief recap of what this auROC translates to, establishes that people can predict their next-week drinking relatively accurately. not sure if it makes sense yet here to talk about cued, contextualized, etc - maybe better for after comparison w AASE model
 
 ## AASE
 
@@ -231,6 +268,12 @@ scoring
 time period it assesses for
 
 ## Analyses model comparisons purpose 2
+
+## Results: Dynamic vs. static self-monitoring
+
+start with just AASE performance (mirror however dynamic model was displayed)
+
+then model comparisons (bayesian)
 
 ## EMA
 
@@ -241,5 +284,7 @@ discuss 4x daily component & timing
 ## Feature engineering
 
 ## Analyses model comparisons purpose 3
+
+## Results: Full EMA vs. self-monitoring alone
 
 
