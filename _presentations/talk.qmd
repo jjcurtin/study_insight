@@ -188,7 +188,7 @@ The purpose of this project is to determine:
 
 ## EMA
 
-
+![](../images/hist_insight.png)
 
 ## Lapse labels
 
@@ -209,6 +209,8 @@ The purpose of this project is to determine:
   - No lapse: 7403 (75.2%)
 
 ## Model training
+
+- 
 
 configurations (insight only)
 
