@@ -79,7 +79,7 @@ There is a strongly held belief that self-monitoring is valuable and even necess
 [It is unclear how well static measures like the AASE predict future lapse and relapse outcomes]{.purple}.
 
 :::{.footer}
-reference for AASE brief version
+McKiernan et al. (2011). Development of a brief abstinence self-efficacy measure. *Journal of social work practice in the addictions.*
 :::
 
 ## Recovery as a dynamic process
@@ -106,7 +106,7 @@ Static or one-time measurement stands in conflict with what we know about the dy
 
 ## Purpose
 
-[The purpose of this project is to determine whether [dynamic self-monitoring]{.purple} offers greater predictive value than [static (one-time) risk assessment]{.purple}.]{.centered}
+[The purpose of this project is to determine whether we can [predict alcohol lapse]{.yellow} more accurately using [dynamic self-monitoring]{.purple} or [static (one-time) risk assessment]{.purple}.]{.centered}
 
 <!--progress through brief explanations of each in second column
 1. brief overview: put question back up, model built from single predictor (kept "raw") matched to outcome of the same 1-week window, did they actually lapse. model performance = index of accuracy of their predictions
@@ -130,15 +130,27 @@ Static or one-time measurement stands in conflict with what we know about the dy
   
 ## Procedure
 
-brief overview
+- Participants completed 5 study visits over ~3 months
+- Intake visit included collecting self-report measures
+- Participants were expected to respond to ecological momentary assessment (EMA) surveys daily while on study
 
 ## Static risk assessment via AASE
 
-AASE
-when administered
-items, response options
-scoring into total score
-reference
+- During the intake visit, participants completed the [Alcohol Abstinence Self-Efficacy Scale]{.yellow}
+
+- 20-item version that comprises the [confidence domain]{.purple} of the 40-item version
+  - Measures an individual's *self-confidence about their ability to avoid drinking alcohol* in a variety of situations
+  - Response options range from 0 ("Not at all") to 4 ("Extremely")
+  
+- Total score is calculated by summing all item scores
+
+:::{.footer}
+McKiernan et al. (2011). Development of a brief abstinence self-efficacy measure. *Journal of social work practice in the addictions.*
+:::
+
+:::{.notes}
+4 subdomains re: different situations - negative affect (e.g., "When I am worried"), social (e.g., When I am being offered a drink in a social situation"), physical (e.g., "When I have a headache"), craving (e.g., "When I have the urge to try just one drink to see what happens")
+:::
 
 ## Dynamic self-monitoring via EMA
 
@@ -161,9 +173,52 @@ reference
 
 ## Outcome: Lapse
 
-DEFINE LAPSE CLEARLY & JUSTIFY CHOICE
-connect to sample w goal of abstinence, any drinking = goal-inconsistent
-contrast to relapse nebulous
+::::{.columns}
+
+:::{.column, width="65%"}
+
+- [Lapse]{.yellow}: A single instance of goal-inconsistent alcohol use
+
+:::
+
+:::{.column, width="35%"}
+:::
+
+::::
+
+:::{.notes}
+justify lapse choice: clearly defined, observable, have temporally precise onsets and offsets. lapses always precede relapse and can be an early warning sign for intervention. maladaptive responses to a lapse can undermine recovery
+
+connect to sample w goal of abstinence, any drinking = goal-inconsistent. made our outcome more homogeneous
+:::
+
+## Outcome: Lapse
+
+::::{.columns}
+
+:::{.column, width="65%"}
+
+- [Lapse]{.yellow}: A single instance of goal-inconsistent alcohol use
+
+- Lapses were assessed via an additional EMA item:
+
+> "Have you drank any alcohol that you have not yet reported?
+
+:::
+
+:::{.column, width="35%"}
+![EMA Responses on Mobile Phone](../images/ema_lapse_mobile.png)
+:::
+
+::::
+
+## Outcome: Lapse
+
+::::{.columns}
+
+:::{.column, width="65%"}
+
+- [Lapse]{.yellow}: A single instance of goal-inconsistent alcohol use
 
 - Lapses were assessed via an additional EMA item:
 
@@ -173,13 +228,21 @@ contrast to relapse nebulous
   - The hour and date of the start of the drinking episode
   - The hour and date of the end of the drinking episode
 
+:::
+
+:::{.column, width="35%"}
+![EMA Calendar Pop-up on Mobile Phone](../images/ema_cal_mobile.png)
+:::
+
+::::
+
 ## Lapse labels
 
 - Our outcomes were [one-week windows]{.yellow} that began immediately following the submission of the morning EMA
   - Windows that contained any portion of a reported lapse were labeled as [lapse]{.purple}
   - Windows that did not contain a lapse were labeled as [no lapse]{.purple}
 
-- Total N observations: 9845
+- Total N observations (i.e., 1-week windows): 9845
   - Lapse: 2442 (24.8%)
   - No lapse: 7403 (75.2%)
 
@@ -187,7 +250,7 @@ contrast to relapse nebulous
 
 - Single predictor in each model: 
   - Dynamic self-monitoring: most recent self-monitoring score (no feature engineering)
-  - Static risk assessment: AASE total score
+  - Static risk assessment: AASE total score (no feature engineering, same score for all outcome windows)
 - Outcome: next-week drinking
 
 - Model configurations used the xgboost algorithm, various types of resampling, and sensible hyperparameter values
@@ -195,14 +258,14 @@ contrast to relapse nebulous
 :::{.notes}
   - Algorithm xgboost (tree-based algorithm)
   - Upsampling, downsampling, SMOTE, and no resampling to adjust majority/minority class ratios
-  - Sensible values for hyperparameters mtry, learning rate, and third??
+  - Sensible values for hyperparameters mtry, learning rate, and tree depth
 :::
 
 ## Model training, selection, and evaluation
 
-::::{.columns}
+:::{.columns}
 
-:::{.column, width="50%"}
+::::{.column, width="60%"}
 - Models are trained, selected, and evaluated using [nested k-fold cross-validation]{.yellow}
 
 - Key details:
@@ -211,33 +274,55 @@ contrast to relapse nebulous
   - Produces 30 independent estimates of model performance in new data
   
 - Model performance evaluated on [area under the ROC curve (auROC)]{.yellow}
-:::
-
-:::{.column, width="50%"}
-![](../images/cross_validation.png)
-:::
-
 ::::
 
+::::{.column, width="40%"}
+![](../images/cross_validation.png)
+::::
+
+:::
+
 :::{.notes}
+for people who actually know/care, we used 3 repeats of 10-fold CV on the outer fold and 1 repeat of 10-fold CV on the inner fold
 
 walk through CV illustration. highlight key points
 
 describe auROC in plain terms
 
-highlight that we have 30 held-out estimates from each model, so can compare performance using these independent estimates & bayesian approach, reference, tidymodels/tidyposterior methods
 :::
 
 ## Analysis plan: Model performance comparisons
 
-BAYESIAN METHODS DESCRIBE
-again highlight key points
+- We used a [Bayesian hierarchical generalized linear model]{.purple} to estimate the posterior probability distributions and 95% Bayesian confidence intervals (CIs) for auROC for the best models
+
+- [Model performance]{.yellow}: Report 95% (equal-tailed) Bayesian CIs from the posterior probability distributions
+
+- [Model comparison]{.yellow}: Regressed the auROCs from the 30 test sets as a function of assessment type (dynamic vs. static), report 95% Bayesian CIs for the differences in performance
+
+:::{.notes}
+we have 30 held-out estimates from each model, so can compare performance using these independent estimates & bayesian approach, reference, tidymodels/tidyposterior methods
+
+Followed recommendations from tidymodels team, random intercepts for fold and repeat (folds nested within repeats)
+:::
 
 ## Results: Dynamic vs. static self-monitoring
 
+{{< embed ../notebooks/ana_bayes_insight.qmd#fig-post-model-sm >}}
+
+:::{.notes}
 start with just AASE performance - some signal, unsurprising given extant literature and continued use in clinical practice!
 
-then model comparison - but we can do SO UCH BETTER when we assess a dynamic process using dynamic measurement
+dynamic self-monitoring allows us to do SO MUCH better! makes sense because we are assessing a process that we know to be dynamic
+:::
+
+## Results: Dynamic vs. static self-monitoring
+
+{{< embed ../notebooks/ana_bayes_insight.qmd#fig-post-contrasts-sm >}}
+
+:::{.notes}
+statistically much better
+contextualize ~.2 increase as 40% of possible auROC change - that's a HUGE effect size!
+:::
 
 ## Takeaways
 
