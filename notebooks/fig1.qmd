@@ -17,7 +17,6 @@ devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/format_p
 path_models <- format_path("studydata/risk/models/ema")
 path_data_shared <- format_path("studydata/risk/data_processed/shared")
 path_data_ema <- format_path("studydata/risk/data_processed/ema")
-```{r}
 
 # Create data
 data <- tibble(
