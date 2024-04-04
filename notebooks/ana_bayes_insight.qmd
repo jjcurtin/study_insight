@@ -119,19 +119,10 @@ auc_1w_aase <- read_rds(file.path(path_models,
          fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
   select(repeat_num, fold_num, roc_auc)
 
-auc_dich_aase <- read_rds(file.path(path_models, 
-                                    str_c("outer_metrics_dichotomous_aase_only_", 
-                                          version, "_nested.rds"))) |> 
-  arrange(outer_split_num) |> 
-  mutate(repeat_num = rep(str_c("repeat", 1:3), each = 10),
-         fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
-  select(repeat_num, fold_num, roc_auc)
-
 auc <- auc_1w_all %>% 
   rename(week_all = roc_auc) %>% 
   mutate(week_ins = auc_1w_ins$roc_auc,
-         week_aase = auc_1w_aase$roc_auc,
-         dich_aase = auc_dich_aase$roc_auc) %>% 
+         week_aase = auc_1w_aase$roc_auc) %>% 
   glimpse()
 ```
 
@@ -145,10 +136,6 @@ auc_1w_ins %>%
   geom_histogram(aes(x = roc_auc), bins = 10)
 
 auc_1w_aase %>% 
-  ggplot() + 
-  geom_histogram(aes(x = roc_auc), bins = 10)
-
-auc_dich_aase %>% 
   ggplot() + 
   geom_histogram(aes(x = roc_auc), bins = 10)
 ```
@@ -204,24 +191,22 @@ pp_tidy %>%
             lower = quantile(posterior, probs = q[1]), 
             upper = quantile(posterior, probs = q[3])) %>% 
   mutate(model = factor(model, 
-                        levels = c("week_all", "week_ins", 
-                                   "week_aase", "dich_aase"),
-                        labels = c("One week / All Features",
-                                   "One week / Insight only", 
-                                   "One week / AASE only",
-                                   "Dichotomous / AASE only")),
+                        levels = c("week_aase", "week_ins", 
+                                   "week_all"),
+                        labels = c("AASE Static Risk",
+                                   "Dynamic Self-Monitoring", 
+                                   "All Features")),
          y = 1000) |> 
   arrange(model)
 
 ```
 
-
 ### Model contrasts
 
 ```{r}
 pp_contrasts <- contrast_models(pp, 
-                                list("week_ins", "week_ins", "week_ins"), 
-                                list("week_aase", "dich_aase", "week_all"))
+                                list("week_ins", "week_ins"), 
+                                list("week_aase", "week_all"))
 
 summary(pp_contrasts, size = 0.01, prob = 0.95)
 pp_contrasts %>% autoplot(size = 0)
@@ -234,22 +219,31 @@ Model posteriors
 ci <- pp_tidy %>% 
   summary() %>% 
   mutate(model = factor(model, 
-                        levels = c("week_all", "week_ins", 
-                                   "week_aase", "dich_aase"),
-                        labels = c("One week / All Features",
-                                   "One week / Insight only", 
-                                   "One week / AASE only",
-                                   "Dichotomous / AASE only")),
+                        levels = c("week_aase", "week_ins", 
+                                   "week_all"),
+                        labels = c("AASE Static Risk",
+                                   "Dynamic Self-Monitoring", 
+                                   "All Features")),
          y = 1000)
+
+ci_sm <- ci |> 
+  filter(model != "All Features")
+
+ci_ema <- ci |> 
+  filter(model != "AASE Static Risk")
+
+```
+
+```{r}
+#| label: fig-post-model-all
 
 pp_tidy %>% 
   mutate(model = factor(model, 
-                        levels = c("week_all", "week_ins", 
-                                   "week_aase", "dich_aase"),
-                        labels = c("One week / All Features",
-                                   "One week / Insight only", 
-                                   "One week / AASE only",
-                                   "Dichotomous / AASE only")),
+                        levels = c("week_aase", "week_ins", 
+                                   "week_all"),
+                        labels = c("AASE Static Risk",
+                                   "Dynamic Self-Monitoring", 
+                                   "All Features")),
          y = 1000) %>%
   ggplot() + 
   geom_histogram(aes(x = posterior, fill = model), 
@@ -265,25 +259,100 @@ pp_tidy %>%
   scale_y_continuous("Posterior Probability", 
                      breaks = c(0, 500, 1000)) +
   # ylab("Posterior Probability Density") +
-  xlab("Area Under ROC Curve") +
-  labs(color = "Model", fill = "Model")
+  xlab("Area Under ROC Curve (auROC)") +
+  labs(color = "Model", fill = "Model") +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| label: fig-post-model-sm
+
+pp_tidy %>% 
+  mutate(model = factor(model, 
+                        levels = c("week_aase", "week_ins", 
+                                   "week_all"),
+                        labels = c("AASE Static Risk",
+                                   "Dynamic Self-Monitoring", 
+                                   "All Features")),
+         y = 1000) %>%
+  filter(model != "All Features") |> 
+  ggplot() + 
+  geom_histogram(aes(x = posterior, fill = model), 
+                 color = "black", alpha = .4, 
+                 bins = 30) +
+  geom_segment(mapping = aes(y = y+100, yend = y-100, x = mean, xend = mean,
+                             color = model),
+               data = ci_sm) +
+  geom_segment(mapping = aes(y = y, yend = y, x = lower, 
+                             xend = upper, color = model),
+               data = ci_sm) +
+  facet_wrap(vars(model), ncol = 1) +
+  scale_y_continuous("Posterior Probability", 
+                     breaks = c(0, 500, 1000)) +
+  # ylab("Posterior Probability Density") +
+  xlab("Area Under ROC Curve (auROC)") +
+  labs(color = "Model", fill = "Model") +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| label: fig-post-model-ema
+
+pp_tidy %>% 
+  mutate(model = factor(model, 
+                        levels = c("week_aase", "week_ins", 
+                                   "week_all"),
+                        labels = c("AASE Static Risk",
+                                   "Dynamic Self-Monitoring", 
+                                   "All Features")),
+         y = 1000) %>%
+  filter(model != "AASE Static Risk") |> 
+  ggplot() + 
+  geom_histogram(aes(x = posterior, fill = model), 
+                 color = "black", alpha = .4, 
+                 bins = 30) +
+  geom_segment(mapping = aes(y = y+100, yend = y-100, x = mean, xend = mean,
+                             color = model),
+               data = ci_ema) +
+  geom_segment(mapping = aes(y = y, yend = y, x = lower, 
+                             xend = upper, color = model),
+               data = ci_ema) +
+  facet_wrap(vars(model), ncol = 1) +
+  scale_y_continuous("Posterior Probability", 
+                     breaks = c(0, 500, 1000)) +
+  # ylab("Posterior Probability Density") +
+  xlab("Area Under ROC Curve (auROC)") +
+  labs(color = "Model", fill = "Model") +
+  theme(legend.position = "none")
 ```
 
 model contrast posteriors
 
 ```{r model_contrast_posteriors}
 ci <- pp %>%
-  contrast_models(list("week_ins", "week_ins", "week_ins"), 
-                  list("week_aase", "dich_aase", "week_all")) %>% 
+  contrast_models(list("week_ins", "week_ins"), 
+                  list("week_aase", "week_all")) %>% 
   summary(size = .01) %>% 
   mutate(contrast = factor(contrast, 
-                           levels = c("week_ins vs dich_aase", 
-                                      "week_ins vs week_aase", 
+                           levels = c("week_ins vs week_aase", 
                                       "week_ins vs week_all"),
-                           labels = c("Insight vs. AASE (dichotomous)", 
-                                      "Insight vs. AASE (week)", 
-                                      "Insight vs. All Features")),
+                           labels = c("Dynamic vs. Static self-monitoring", 
+                                      "Self-monitoring only vs. All Features")),
          y = 700)
+
+ci_sm <- ci |> 
+  filter(str_detect(contrast, "Dynamic"))
+
+ci_ema <- ci |> 
+  filter(str_detect(contrast, "All")) |> 
+  mutate(mean = mean * -1,
+         lower = lower * -1,
+         upper = upper * -1)
+  
+```
+
+```{r}
+#| label: fig-post-contrasts-all
 
 pp %>% 
   tidy(seed = 123) %>%   
@@ -291,19 +360,16 @@ pp %>%
   mutate(sample = row_number()) %>% 
   ungroup() %>% 
   pivot_wider(names_from = model, values_from = posterior) %>% 
-  mutate(ins_vs_aasewk = week_ins - week_aase,
-         ins_vs_aasedich = week_ins - dich_aase,
+  mutate(ins_vs_aase = week_ins - week_aase,
          ins_vs_all = week_ins - week_all) %>% 
-  pivot_longer(cols = ins_vs_aasewk:ins_vs_all,
+  pivot_longer(cols = ins_vs_aase:ins_vs_all,
                names_to = "contrast",
                values_to = "posterior") %>% 
   mutate(contrast = factor(contrast, 
-                           levels = c("ins_vs_aasedich", 
-                                      "ins_vs_aasewk", 
+                           levels = c("ins_vs_aase", 
                                       "ins_vs_all"),
-                           labels = c("Insight vs. AASE (dichotomous)", 
-                                      "Insight vs. AASE (week)", 
-                                      "Insight vs. All Features"))) %>% 
+                           labels = c("Dynamic vs. Static self-monitoring", 
+                                      "Self-monitoring only vs. All Features"))) %>% 
   ggplot() +
   geom_histogram(aes(x = posterior, fill = contrast), 
                  color = "black", alpha = .4, bins = 30) +
@@ -317,7 +383,82 @@ pp %>%
                              color = contrast), data = ci) +
   facet_wrap(~contrast, ncol = 1) +
   ylab("Posterior Probability") +
-  xlab("Model Contrast for AUC")
+  xlab("Model Contrast for auROC") +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| label: fig-post-contrasts-sm
+
+pp %>% 
+  tidy(seed = 123) %>%   
+  group_by(model) %>% 
+  mutate(sample = row_number()) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = model, values_from = posterior) %>% 
+  mutate(ins_vs_aase = week_ins - week_aase,
+         ins_vs_all = week_ins - week_all) %>% 
+  pivot_longer(cols = ins_vs_aase:ins_vs_all,
+               names_to = "contrast",
+               values_to = "posterior") %>% 
+  mutate(contrast = factor(contrast, 
+                           levels = c("ins_vs_aase", 
+                                      "ins_vs_all"),
+                           labels = c("Dynamic vs. Static self-monitoring", 
+                                      "Self-monitoring only vs. All Features"))) %>% 
+  filter(str_detect(contrast, "Dynamic")) |> 
+  ggplot() +
+  geom_histogram(aes(x = posterior, fill = contrast), 
+                 color = "black", alpha = .4, bins = 30) +
+  geom_vline(xintercept = -.01, color = "yellow", 
+             linetype = "dashed", linewidth = 1) +
+  geom_vline(xintercept = .01, color = "yellow", 
+             linetype = "dashed", linewidth = 1) +
+  geom_segment(mapping = aes(y = y+200, yend = y, x = mean, xend = mean,
+                             color = contrast), data = ci_sm) +
+  geom_segment(mapping = aes(y = y+100, yend = y+100, x = lower, xend = upper, 
+                             color = contrast), data = ci_sm) +
+  ylab("Posterior Probability") +
+  xlab("Model Contrast for auROC") +
+  labs(title = "Dynamic vs. Static Self-Monitoring") +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| label: fig-post-contrasts-ema
+
+pp %>% 
+  tidy(seed = 123) %>%   
+  group_by(model) %>% 
+  mutate(sample = row_number()) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = model, values_from = posterior) %>% 
+  mutate(ins_vs_aase = week_ins - week_aase,
+         all_vs_ins = week_all - week_ins) %>% 
+  pivot_longer(cols = ins_vs_aase:all_vs_ins,
+               names_to = "contrast",
+               values_to = "posterior") %>% 
+  mutate(contrast = factor(contrast, 
+                           levels = c("ins_vs_aase", 
+                                      "all_vs_ins"),
+                           labels = c("Dynamic vs. Static self-monitoring", 
+                                      "All Features vs. Self-monitoring only"))) %>% 
+  filter(str_detect(contrast, "All")) |> 
+  ggplot() +
+  geom_histogram(aes(x = posterior, fill = contrast), 
+                 color = "black", alpha = .4, bins = 30) +
+  geom_vline(xintercept = -.01, color = "yellow", 
+             linetype = "dashed", linewidth = 1) +
+  geom_vline(xintercept = .01, color = "yellow", 
+             linetype = "dashed", linewidth = 1) +
+  geom_segment(mapping = aes(y = y+200, yend = y, x = mean, xend = mean,
+                             color = contrast), data = ci_ema) +
+  geom_segment(mapping = aes(y = y+100, yend = y+100, x = lower, xend = upper, 
+                             color = contrast), data = ci_ema) +
+  ylab("Posterior Probability") +
+  xlab("Model Contrast for auROC") +
+  labs(title = "All Features vs. Self-monitoring only") +
+  theme(legend.position = "none")
 ```
 
 
