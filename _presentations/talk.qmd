@@ -46,7 +46,7 @@ editor_options:
 
 [Self-monitoring]{.purple} is a tool to increase conscious awareness about one's own present or future behavior
 
-:::{.notes}
+::: {.notes}
 Self-monitoring = insight = confidence/likelihood of behaviors
 
 It can bring about awareness of current behaviors, but it can also encourage thinking about the likelihood of future behaviors
@@ -56,7 +56,7 @@ It can bring about awareness of current behaviors, but it can also encourage thi
 
 [Self-monitoring]{.purple} is a tool to increase conscious awareness about one's own present or [future]{.yellow} behavior
 
-:::{.notes}
+::: {.notes}
 In the case of alcohol use disorder (AUD), self-monitoring is often used to increase awareness about CURRENT RISK of FUTURE ALCOHOL USE, especially a return to drinking that is goal-inconsistent. For example, if someone's goal is abstinence, then they may wish to self-monitor risk of any alcohol use.
 :::
 
@@ -67,9 +67,10 @@ In the case of alcohol use disorder (AUD), self-monitoring is often used to incr
   - Prompted by many self-help tools/apps/etc.
   - Considered to be a productive component of CBT in the treatment of substance use disorders
 
-:::{.notes}
+::: {.notes}
 There is a strongly held belief that self-monitoring is valuable and even necessary tool during AND FOLLOWING treatment for alcohol use disorder (AUD) and other substance use disorders. Often, self-monitoring is "prescribed" as a primary tool post-treatment as a way for individuals to determine whether they need to return to treatment or reach out for support. 
 :::
+
 ## Static measurement
 
 - Self-monitoring has traditionally been measured statically
@@ -78,7 +79,7 @@ There is a strongly held belief that self-monitoring is valuable and even necess
 
 [It is unclear how well static measures like the AASE predict future lapse and relapse outcomes]{.purple}.
 
-:::{.footer}
+::: {.footer}
 McKiernan et al. (2011). Development of a brief abstinence self-efficacy measure. *Journal of social work practice in the addictions.*
 :::
 
@@ -90,7 +91,7 @@ McKiernan et al. (2011). Development of a brief abstinence self-efficacy measure
   
 [Thus, self-monitoring dynamic risk of lapse likely requires dense, dynamic assessment to be effective]{.purple}
 
-:::{.notes}
+::: {.notes}
 Static or one-time measurement stands in conflict with what we know about the dynamic relapse prevention model
 :::
 
@@ -100,7 +101,7 @@ Static or one-time measurement stands in conflict with what we know about the dy
   - [Densely]{.yellow}: assessment can happen as frequently as needed/desired
   - [Longitudinally]{.yellow}: assessment can happen throughout the ongoing process of recovery
 
-:::{.notes}
+::: {.notes}
 
 :::
 
@@ -144,11 +145,11 @@ Static or one-time measurement stands in conflict with what we know about the dy
   
 - Total score is calculated by summing all item scores
 
-:::{.footer}
+::: {.footer}
 McKiernan et al. (2011). Development of a brief abstinence self-efficacy measure. *Journal of social work practice in the addictions.*
 :::
 
-:::{.notes}
+::: {.notes}
 4 subdomains re: different situations - negative affect (e.g., "When I am worried"), social (e.g., When I am being offered a drink in a social situation"), physical (e.g., "When I have a headache"), craving (e.g., "When I have the urge to try just one drink to see what happens")
 :::
 
@@ -173,20 +174,20 @@ McKiernan et al. (2011). Development of a brief abstinence self-efficacy measure
 
 ## Outcome: Lapse
 
-::::{.columns}
+:::: {.columns}
 
-:::{.column, width="65%"}
+::: {.column width="65%"}
 
 - [Lapse]{.yellow}: A single instance of goal-inconsistent alcohol use
 
 :::
 
-:::{.column, width="35%"}
+::: {.column width="35%"}
 :::
 
 ::::
 
-:::{.notes}
+::: {.notes}
 justify lapse choice: clearly defined, observable, have temporally precise onsets and offsets. lapses always precede relapse and can be an early warning sign for intervention. maladaptive responses to a lapse can undermine recovery
 
 connect to sample w goal of abstinence, any drinking = goal-inconsistent. made our outcome more homogeneous
@@ -194,9 +195,9 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
 
 ## Outcome: Lapse
 
-::::{.columns}
+:::: {.columns}
 
-:::{.column, width="65%"}
+::: {.column width="65%"}
 
 - [Lapse]{.yellow}: A single instance of goal-inconsistent alcohol use
 
@@ -206,7 +207,7 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
 
 :::
 
-:::{.column, width="35%"}
+::: {.column width="35%"}
 ![EMA Responses on Mobile Phone](../images/ema_lapse_mobile.png)
 :::
 
@@ -214,9 +215,9 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
 
 ## Outcome: Lapse
 
-::::{.columns}
+:::: {.columns}
 
-:::{.column, width="65%"}
+::: {.column width="65%"}
 
 - [Lapse]{.yellow}: A single instance of goal-inconsistent alcohol use
 
@@ -230,7 +231,7 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
 
 :::
 
-:::{.column, width="35%"}
+::: {.column width="35%"}
 ![EMA Calendar Pop-up on Mobile Phone](../images/ema_cal_mobile.png)
 :::
 
@@ -255,7 +256,7 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
 
 - Model configurations used the xgboost algorithm, various types of resampling, and sensible hyperparameter values
 
-:::{.notes}
+::: {.notes}
   - Algorithm xgboost (tree-based algorithm)
   - Upsampling, downsampling, SMOTE, and no resampling to adjust majority/minority class ratios
   - Sensible values for hyperparameters mtry, learning rate, and tree depth
@@ -263,9 +264,9 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
 
 ## Model training, selection, and evaluation
 
-:::{.columns}
+::: {.columns}
 
-::::{.column, width="60%"}
+:::: {.column width="60%"}
 - Models are trained, selected, and evaluated using [nested k-fold cross-validation]{.yellow}
 
 - Key details:
@@ -276,13 +277,13 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
 - Model performance evaluated on [area under the ROC curve (auROC)]{.yellow}
 ::::
 
-::::{.column, width="40%"}
+:::: {.column width="40%"}
 ![](../images/cross_validation.png)
 ::::
 
 :::
 
-:::{.notes}
+::: {.notes}
 for people who actually know/care, we used 3 repeats of 10-fold CV on the outer fold and 1 repeat of 10-fold CV on the inner fold
 
 walk through CV illustration. highlight key points
@@ -299,7 +300,7 @@ describe auROC in plain terms
 
 - [Model comparison]{.yellow}: Regressed the auROCs from the 30 test sets as a function of assessment type (dynamic vs. static), report 95% Bayesian CIs for the differences in performance
 
-:::{.notes}
+::: {.notes}
 we have 30 held-out estimates from each model, so can compare performance using these independent estimates & bayesian approach, reference, tidymodels/tidyposterior methods
 
 Followed recommendations from tidymodels team, random intercepts for fold and repeat (folds nested within repeats)
@@ -309,7 +310,7 @@ Followed recommendations from tidymodels team, random intercepts for fold and re
 
 {{< embed ../notebooks/ana_bayes_insight.qmd#fig-post-model-sm >}}
 
-:::{.notes}
+::: {.notes}
 start with just AASE performance - some signal, unsurprising given extant literature and continued use in clinical practice!
 
 dynamic self-monitoring allows us to do SO MUCH better! makes sense because we are assessing a process that we know to be dynamic
@@ -319,7 +320,7 @@ dynamic self-monitoring allows us to do SO MUCH better! makes sense because we a
 
 {{< embed ../notebooks/ana_bayes_insight.qmd#fig-post-contrasts-sm >}}
 
-:::{.notes}
+::: {.notes}
 statistically much better
 contextualize ~.2 increase as 40% of possible auROC change - that's a HUGE effect size!
 :::
@@ -331,8 +332,6 @@ what did we learn
 what can we do with this? not much --> full EMA
 
 ## Dynamic self-monitoring via EMA (UPDATE - this = WHY dynamic better)
-
-> "How likely are you to drink alcohol in the next week?"
 
 Self-monitoring was...
 - [**Dynamic**]{.purple}: Assessments occurred [*daily*]{.yellow}
@@ -356,6 +355,19 @@ discuss 4x daily component & timing
 
 ## Results: Full EMA vs. self-monitoring alone
 
+{{< embed ../notebooks/ana_bayes_insight.qmd#fig-post-model-ema >}}
+
+::: {.notes}
+
+:::
+
+## Results: Full EMA vs. self-monitoring alone
+
+{{< embed ../notebooks/ana_bayes_insight.qmd#fig-post-contrasts-ema >}}
+
+::: {.notes}
+
+:::
 
 don't introduce dtx until after initial model comparison
 cut first question separately, just do model comparison 2 and talk about individual performance as well as modelc omparison in those analyses
