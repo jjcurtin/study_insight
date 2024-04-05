@@ -5,6 +5,7 @@ institute: "University of Wisconsin-Madison"
 date: "April 11, 2024"
 format: 
   revealjs:
+    incremental: true
     scrollable: true
     chalkboard: false
     css: slides.css
@@ -170,7 +171,7 @@ McKiernan et al. (2011). Development of a brief abstinence self-efficacy measure
 
 ## Dynamic self-monitoring via EMA
 
-![](../images/hist_insight.png)
+![](https://github.com/jjcurtin/study_insight/blob/main/images/hist_insight.png)
 
 ## Outcome: Lapse
 
@@ -208,7 +209,7 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
 :::
 
 ::: {.column width="35%"}
-![EMA Responses on Mobile Phone](../images/ema_lapse_mobile.png)
+![EMA Responses on Mobile Phone](https://github.com/jjcurtin/study_insight/blob/main/images/ema_lapse_mobile.png)
 :::
 
 ::::
@@ -232,7 +233,7 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
 :::
 
 ::: {.column width="35%"}
-![EMA Calendar Pop-up on Mobile Phone](../images/ema_cal_mobile.png)
+![EMA Calendar Pop-up on Mobile Phone](https://github.com/jjcurtin/study_insight/blob/main/images/ema_cal_mobile.png)
 :::
 
 ::::
@@ -278,7 +279,7 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
 ::::
 
 :::: {.column width="40%"}
-![](../images/cross_validation.png)
+![](https://github.com/jjcurtin/study_insight/blob/main/images/cross_validation.png)
 ::::
 
 :::
