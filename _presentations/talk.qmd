@@ -242,7 +242,7 @@ Static or one-time measurement stands in conflict with what we know about the dy
 ::::
 
 ::: {.notes}
-justify lapse choice: clearly defined, observable, have temporally precise onsets and offsets. lapses always precede relapse and can be an early warning sign for intervention. maladaptive responses to a lapse can undermine recovery
+justify lapse choice: clearly defined, observable, have temporally precise onsets and offsets. lapses always precede relapse and can be an early warning sign for intervention. maladaptive responses to a lapse can undermine recovery in itself
 
 connect to sample w goal of abstinence, any drinking = goal-inconsistent. made our outcome more homogeneous
 :::
@@ -402,7 +402,7 @@ describe auROC in plain terms:
 ## Analysis plan: Model performance comparisons
 
 ::: {.incremental}
-- We used a [Bayesian hierarchical generalized linear model]{.yellow} to estimate the posterior probability distributions and 95% Bayesian confidence intervals (CIs) for auROC for the best models
+- We used a [Bayesian hierarchical generalized linear model]{.yellow} to estimate the posterior probability distributions and 95% Bayesian credible intervals (CIs) for auROC for the best models
 
 - [Model performance]{.yellow}: Report 95% (equal-tailed) Bayesian CIs from the posterior probability distributions
 
@@ -442,8 +442,7 @@ contextualize ~.2 increase as 40% of possible auROC change - that's a HUGE effec
 ## Takeaways
 
 ::: {.incremental}
-- Individuals can predict their likelihood of future alcohol lapses at study intake (via the AASE) better than chance but with very low accuracy
-  - Insufficient for prediction and clinical utility
+- Individuals can predict their likelihood of future alcohol lapses at study intake (via the AASE) better than chance but with very low accuracy --> [Insufficient for prediction and clinical utility]{.yellow}
 
 - When participants can self-monitor dynamically, they can predict their risk of lapsing in the next week quite accurately
 
@@ -454,8 +453,7 @@ contextualize ~.2 increase as 40% of possible auROC change - that's a HUGE effec
 
 ## Takeaways
 
-- Individuals can predict their likelihood of future alcohol lapses at study intake (via the AASE) better than chance but with very low accuracy
-  - Insufficient for prediction and clinical utility
+- Individuals can predict their likelihood of future alcohol lapses at study intake (via the AASE) better than chance but with very low accuracy --> [Insufficient for prediction and clinical utility]{.yellow}
 
 - When participants can self-monitor dynamically, they can predict their risk of lapsing in the next week quite accurately
 
@@ -471,12 +469,12 @@ contextualize ~.2 increase as 40% of possible auROC change - that's a HUGE effec
 ## Application: How can we use this?
 
 ::: {.incremental}
-- Certainly, there is value in knowing that individuals can self-monitor their risk of returning to alcohol use quite accurately *when self-monitoring is dynamic, cued, and contextualized*
+- There is value in knowing that individuals can self-monitor their risk of returning to alcohol use quite accurately *when self-monitoring is dynamic, cued, and contextualized*
   - Supports the long-believed value of self-monitoring with empirical evidence
   - Adds nuance regarding the need for dynamic assessment of risk and outcome
   - Might be empowering to individuals 
   
-- From an implementation standpoint, [we cannot do much with predictions based solely on self-monitoring] 
+- From an implementation standpoint, [we cannot do much with predictions based solely on self-monitoring]{.yellow}
 :::
 
 ::: {.notes}
@@ -495,16 +493,65 @@ We will build a model using more EMA data as inputs but with the same 1-week win
 
 ## EMA
 
-::: {.incremental}
+:::: {.columns}
+
+::: {.column width = "60%"}
+- Self-monitoring was collected as part of a 10-item EMA survey
+:::
+
+::: {.column width = "40%"}
+
+:::
+
+## EMA
+
+:::: {.columns}
+
+::: {.column width = "60%"}
 - Self-monitoring was collected as part of a 10-item EMA survey
   - Any new lapses
-  - 6 current-state risk factors (e.g., craving)
-  - 2 additional next-week likelihood questions (e.g., likelihood of a stressful event)
+  - 6 current-state risk factors
+:::
+
+::: {.column width = "40%"}
+
+:::
+
+## EMA
+
+:::: {.columns}
+
+::: {.column width = "60%"}
+- Self-monitoring was collected as part of a 10-item EMA survey
+  - Any new lapses
+  - 6 current-state risk factors
+:::
+
+::: {.column width = "40%"}
+![EMA Additional Questions](https://raw.githubusercontent.com/jjcurtin/study_insight/main/images/ema_adtl_qs_1.png)
+:::
+
+## EMA
+
+:::: {.columns}
+
+::: {.column width = "60%"}
+- Self-monitoring was collected as part of a 10-item EMA survey
+  - Any new lapses
+  - 6 current-state risk factors
+    - 2 additional next-week likelihood questions (e.g., likelihood of a stressful event)
   - Likelihood of next-week drinking (self-monitoring)
 
+::::: {.incremental}
 - EMA surveys were sent [four times daily]{.yellow}
   - Morning EMA survey contained all 10 items listed above
   - Three remaining EMA surveys contained the first 7 items only (no next-week likelihood questions), spaced throughout the day
+:::::
+
+:::
+
+::: {.column width = "40%"}
+![EMA Additional Questions](https://raw.githubusercontent.com/jjcurtin/study_insight/main/images/ema_adtl_qs_2.png)
 :::
 
 ## Feature engineering
