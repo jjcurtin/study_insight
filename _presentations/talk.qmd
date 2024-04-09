@@ -98,11 +98,9 @@ In the case of alcohol use disorder (AUD), self-monitoring is often used to incr
 [Self-monitoring]{.yellow} is a tool to increase conscious awareness about one's own present or [future]{.yellow} behavior
 
 Self-monitoring is...
-::: {.incremental}
 - Encouraged by clinicians
 - Prompted by many self-help tools/apps/etc.
 - Considered to be a productive component of CBT in the treatment of substance use disorders
-:::
 
 ::: {.notes}
 There is a strongly held belief that self-monitoring is valuable and even necessary tool during AND FOLLOWING treatment for alcohol use disorder (AUD) and other substance use disorders. Often, self-monitoring is "prescribed" as a primary tool post-treatment as a way for individuals to determine whether they need to return to treatment or reach out for support. 
@@ -484,11 +482,11 @@ We will build a model using more EMA data as inputs but with the same 1-week win
 
 :::: {.columns}
 
-::: {.column width = "60%"}
+::: {.column width="60%"}
 - Self-monitoring was collected as part of a 10-item EMA survey
 :::
 
-::: {.column width = "40%"}
+::: {.column width="40%"}
 
 :::
 
@@ -498,13 +496,13 @@ We will build a model using more EMA data as inputs but with the same 1-week win
 
 :::: {.columns}
 
-::: {.column width = "60%"}
+::: {.column width="60%"}
 - Self-monitoring was collected as part of a 10-item EMA survey
   - Any new lapses
   - 6 current-state risk factors
 :::
 
-::: {.column width = "40%"}
+::: {.column width="40%"}
 ![](https://raw.githubusercontent.com/jjcurtin/study_insight/main/images/ema_adtl_qs_1.png)
 :::
 
@@ -514,7 +512,7 @@ We will build a model using more EMA data as inputs but with the same 1-week win
 
 :::: {.columns}
 
-::: {.column width = "60%"}
+::: {.column width="60%"}
 - Self-monitoring was collected as part of a 10-item EMA survey
   - Any new lapses
   - 6 current-state risk factors
@@ -527,7 +525,7 @@ We will build a model using more EMA data as inputs but with the same 1-week win
 
 :::
 
-::: {.column width = "40%"}
+::: {.column width="40%"}
 ![](https://raw.githubusercontent.com/jjcurtin/study_insight/main/images/ema_adtl_qs_2.png)
 :::
 
