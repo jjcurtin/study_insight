@@ -28,7 +28,7 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 main, menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-  font-weight: 500 !important;
+  font-weight: bold !important;
   font-size: 25px !important;
   color: #ffffff !important;
 }
@@ -121,6 +121,9 @@ margin: var(--r-block-margin) 5%;
 
 }
 
+.reveal .aside-footnotes {
+  font-size: 15px;
+}
 
 .reveal .slides section .fragment.visible {
 color:gray;

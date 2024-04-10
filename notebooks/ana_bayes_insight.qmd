@@ -195,7 +195,7 @@ pp_tidy %>%
                                    "week_all"),
                         labels = c("AASE Static Risk",
                                    "Dynamic Self-Monitoring", 
-                                   "All Features")),
+                                   "All EMA")),
          y = 1000) |> 
   arrange(model)
 
@@ -223,11 +223,11 @@ ci <- pp_tidy %>%
                                    "week_all"),
                         labels = c("AASE Static Risk",
                                    "Dynamic Self-Monitoring", 
-                                   "All Features")),
+                                   "All EMA")),
          y = 1000)
 
 ci_sm <- ci |> 
-  filter(model != "All Features")
+  filter(model != "All EMA")
 
 ci_ema <- ci |> 
   filter(model != "AASE Static Risk")
@@ -243,7 +243,7 @@ pp_tidy %>%
                                    "week_all"),
                         labels = c("AASE Static Risk",
                                    "Dynamic Self-Monitoring", 
-                                   "All Features")),
+                                   "All EMA")),
          y = 1000) %>%
   ggplot() + 
   geom_histogram(aes(x = posterior, fill = model), 
@@ -273,7 +273,7 @@ pp_tidy %>%
                                    "week_all"),
                         labels = c("AASE Static Risk",
                                    "Dynamic Self-Monitoring", 
-                                   "All Features")),
+                                   "All EMA")),
          y = 1000) %>%
   filter(model != "All Features") |> 
   ggplot() + 
@@ -304,7 +304,7 @@ pp_tidy %>%
                                    "week_all"),
                         labels = c("AASE Static Risk",
                                    "Dynamic Self-Monitoring", 
-                                   "All Features")),
+                                   "All EMA")),
          y = 1000) %>%
   filter(model != "AASE Static Risk") |> 
   ggplot() + 
@@ -337,7 +337,7 @@ ci <- pp %>%
                            levels = c("week_ins vs week_aase", 
                                       "week_ins vs week_all"),
                            labels = c("Dynamic vs. Static self-monitoring", 
-                                      "Self-monitoring only vs. All Features")),
+                                      "Self-monitoring only vs. All EMA")),
          y = 700)
 
 ci_sm <- ci |> 
@@ -369,7 +369,7 @@ pp %>%
                            levels = c("ins_vs_aase", 
                                       "ins_vs_all"),
                            labels = c("Dynamic vs. Static self-monitoring", 
-                                      "Self-monitoring only vs. All Features"))) %>% 
+                                      "Self-monitoring only vs. All EMA"))) %>% 
   ggplot() +
   geom_histogram(aes(x = posterior, fill = contrast), 
                  color = "black", alpha = .4, bins = 30) +
@@ -405,7 +405,7 @@ pp %>%
                            levels = c("ins_vs_aase", 
                                       "ins_vs_all"),
                            labels = c("Dynamic vs. Static self-monitoring", 
-                                      "Self-monitoring only vs. All Features"))) %>% 
+                                      "Self-monitoring only vs. All EMA"))) %>% 
   filter(str_detect(contrast, "Dynamic")) |> 
   ggplot() +
   geom_histogram(aes(x = posterior, fill = contrast), 
@@ -442,7 +442,7 @@ pp %>%
                            levels = c("ins_vs_aase", 
                                       "all_vs_ins"),
                            labels = c("Dynamic vs. Static self-monitoring", 
-                                      "All Features vs. Self-monitoring only"))) %>% 
+                                      "All EMA vs. Self-monitoring only"))) %>% 
   filter(str_detect(contrast, "All")) |> 
   ggplot() +
   geom_histogram(aes(x = posterior, fill = contrast), 
@@ -457,7 +457,7 @@ pp %>%
                              color = contrast), data = ci_ema) +
   ylab("Posterior Probability") +
   xlab("Model Contrast for auROC") +
-  labs(title = "All Features vs. Self-monitoring only") +
+  labs(title = "All EMA vs. Self-monitoring only") +
   theme(legend.position = "none")
 ```
 
