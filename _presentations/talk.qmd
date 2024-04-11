@@ -101,17 +101,17 @@ Self-monitoring is...
 
 - Encouraged by clinicians
 
-- Prompted by many self-help tools/apps/etc.
+- Included in many self-help tools/apps/etc.
 
 - Considered to be a productive component of CBT in the treatment of substance use disorders
 
 ::: {.notes}
-There is a strongly held belief that self-monitoring is valuable and even necessary tool during AND FOLLOWING treatment for alcohol use disorder (AUD) and other substance use disorders. Often, self-monitoring is "prescribed" as a primary tool post-treatment as a way for individuals to determine whether they need to return to treatment or reach out for support. 
+There is a strongly held belief that self-monitoring is valuable and even necessary tool during AND FOLLOWING treatment for alcohol use disorder (AUD) and other substance use disorders. Often, self-monitoring is encouraged by clinicians as a primary tool post-treatment as a way for individuals to determine whether they need to return to treatment or reach out for support. It is also a key component of many self-help tools or apps, like via behavior tracking. We also know it is a key component of CBT for treating substance use disorders
 :::
 
 ## Static measurement
 ::: {.incremental}
-- Self-monitoring has traditionally been measured statically
+- Self-monitoring has traditionally been measured [statically]{.yellow}
 
   - These measures are often used to assess an individual's "long-term" likelihood of remaining abstinent
   
@@ -137,7 +137,7 @@ static = measured only once, or a single measurement is expected to assess risk 
 :::
 
 ::: {.notes}
-Static or one-time measurement stands in conflict with what we know about the dynamic relapse prevention model
+START HERE Static or one-time measurement stands in conflict with what we know about the dynamic relapse prevention model
 :::
 
 ::: {.notes}
@@ -146,37 +146,55 @@ Static or one-time measurement stands in conflict with what we know about the dy
 
 ## Purpose {.larger}
 
-/ 
+\
 
-/ 
+\
 
-/ 
-
+\
 
 [The purpose of this project is to determine whether we can predict alcohol lapse more accurately using [dynamic self-monitoring]{.yellow} or [static (one-time) risk assessment]{.yellow}.]{.centered}
 
 ## Participants
 
-- Participants in early recovery (1-8 weeks abstinence) from moderate or severe AUD with a goal of abstinence
+::: {.columns} 
+
+:::: {.column width="40%"}
+- Participants in early recovery (1-8 weeks abstinence) from moderate or severe AUD
+
+  - All participants had a goal of abstinence
+  
+  - Participants were on-study for up to 3 months
+::::
+
+:::: {.column width="60%"}
+
+::::
+
+:::
 
 ## Participants
 
-- Participants in early recovery (1-8 weeks abstinence) from moderate or severe AUD with a goal of abstinence were on-study for up to 3 months
+::: {.columns} 
 
-- Total sample: N = 151
-  - Age: mean = 41, range 21 - 72
-  - Sex: 49.0% female, 51.0% male
-  - Race: 86.8% White/Caucasian, 5.3% Black/African American, 4.6% Other/Multiracial, 2.0% American Indian/Alaska Native, 1.3% Asian
-  - Ethnicity: 97.4% Non-Hispanic, 2.6% Hispanic/Latino/Spanish origin
-  - Education: 10.0% High school degree or less, 36.5% Some college, 53.6% College or advanced degree
-  - Personal income: mean = 34,298, range 0 - 200,000
+:::: {.column width="40%"}
+- Participants in early recovery (1-8 weeks abstinence) from moderate or severe AUD
+
+  - All participants had a goal of abstinence
+  
+  - Participants were on-study for up to 3 months
+::::
+
+:::: {.column width="60%"}
+DEMO TABLE FROM ARIELA'S POSTER
+::::
+
+:::
   
 ::: {.notes}
-BRIEFLY
+BRIEFLY but slower
 :::
 
 ## Static risk assessment via AASE
-
 
 - During an intake visit, participants completed the [Alcohol Abstinence Self-Efficacy Scale]{.yellow} ^[McKiernan et al. (2011). Development of a brief abstinence self-efficacy measure. *Journal of social work practice in the addictions.*] as a static risk assessment
 
@@ -196,9 +214,21 @@ BRIEFLY
 
 ## Dynamic self-monitoring via EMA
 
+:::: {.columns}
+
+::: {.column width="70%"}
+
 - Dynamic self-monitoring relied on a single EMA item:
 
 > "How likely are you to drink alcohol in the next week?"
+
+:::
+
+::: {.column width="30%"}
+![]() SM EMA PIC (in slack)
+:::
+
+::::
 
 ::: {.notes}
 Ecological momentary assessment (EMA) offers a method by which individuals can self-monitor both densely and longitudinally
@@ -206,32 +236,123 @@ Ecological momentary assessment (EMA) offers a method by which individuals can s
 
 ## Dynamic self-monitoring via EMA
 
-- Dynamic self-monitoring relied on a single EMA item:
+:::: {.columns}
 
-> "How likely are you to drink alcohol in the next week?"
-
-- Participants responded on a slider scale ranging from "Very unlikely" (1) to "Very likely" (11)
-
-## Dynamic self-monitoring via EMA
+::: {.column width="70%"}
 
 - Dynamic self-monitoring relied on a single EMA item:
 
 > "How likely are you to drink alcohol in the next week?"
 
-- Participants responded on a slider scale ranging from "Very unlikely" (1) to "Very likely" (11)
+- This item appeared on a 10-item EMA survey that assessed relevant risk factors
+  - 7 items about current state/since last EMA (e.g., urges)
 
-- This item appeared on an EMA sent 1X daily in the morning
+:::
 
-- Participants provided EMA data for up to 3 months
+::: {.column width="30%"}
+![](https://raw.githubusercontent.com/jjcurtin/study_insight/main/images/ema_adtl_qs_1.png)
+:::
 
-  - Previous work from our laboratory showed that providing daily EMA data in this study was acceptable to and well-tolerated by participants ^[Wyant et al. (2023). Acceptability of Personal Sensing Among People With Alcohol Use Disorder: Observational Study. *JMIR mHealth and uHealth, 11:e41833*]
+::::
 
-<!-- 
+::: {.notes}
+Ecological momentary assessment (EMA) offers a method by which individuals can self-monitor both densely and longitudinally
+:::
+
 ## Dynamic self-monitoring via EMA
 
-![Histogram of self-monitoring EMA item responses (Very unlikely to Very likely)](https://raw.githubusercontent.com/jjcurtin/study_insight/main/images/hist_insight.png)
+:::: {.columns}
 
--->
+::: {.column width="70%"}
+
+- Dynamic self-monitoring relied on a single EMA item:
+
+> "How likely are you to drink alcohol in the next week?"
+
+- This item appeared on a 10-item EMA survey that assessed relevant risk factors
+  - 7 items about current state/since last EMA (e.g., urges)
+  - 2 additional next-week reflections (e.g., likelihood of upcoming stressful event)
+  - Self-monitoring
+
+:::
+
+::: {.column width="30%"}
+![](https://raw.githubusercontent.com/jjcurtin/study_insight/main/images/ema_adtl_qs_2.png)
+:::
+
+::::
+
+::: {.notes}
+Ecological momentary assessment (EMA) offers a method by which individuals can self-monitor both densely and longitudinally
+:::
+
+## Dynamic self-monitoring via EMA
+
+:::: {.columns}
+
+::: {.column width="70%"}
+
+- Dynamic self-monitoring relied on a single EMA item:
+
+> "How likely are you to drink alcohol in the next week?"
+
+- This item appeared on a 10-item EMA survey that assessed relevant risk factors
+  - 7 items about current state/since last EMA (e.g., urges)
+  - 2 additional next-week reflections (e.g., likelihood of upcoming stressful event)
+  - Self-monitoring
+
+- EMA surveys were sent [four times daily]{.yellow}
+  - Only *morning EMA surveys* contained final three items about next-week risk, including self-monitoring
+  - Previous work from our laboratory showed providing 4X daily EMA data in this study was acceptable to and well-tolerated by participants ^[Wyant et al. (2023). Acceptability of Personal Sensing Among People With Alcohol Use Disorder: Observational Study. *JMIR mHealth and uHealth, 11:e41833*]
+
+:::
+
+::: {.column width="30%"}
+![](https://raw.githubusercontent.com/jjcurtin/study_insight/main/images/ema_adtl_qs_2.png)
+:::
+
+::::
+
+::: {.notes}
+Ecological momentary assessment (EMA) offers a method by which individuals can self-monitor both densely and longitudinally
+:::
+
+## Dynamic self-monitoring via EMA
+
+:::: {.columns}
+
+::: {.column width="70%"}
+
+- Dynamic self-monitoring relied on a single EMA item:
+
+> "How likely are you to drink alcohol in the next week?"
+
+- This item appeared on a 10-item EMA survey that assessed relevant risk factors
+  - 7 items about current state/since last EMA (e.g., urges)
+  - 2 additional next-week reflections (e.g., likelihood of upcoming stressful event)
+  - Self-monitoring
+
+- EMA surveys were sent [four times daily]{.yellow}
+  - Only *morning EMA surveys* contained final three items about next-week risk, including self-monitoring
+  - Previous work from our laboratory showed that providing 4X daily EMA data in this study was acceptable to and well-tolerated by participants
+
+- Thus, self-monitoring was:
+  - [Dynamic]{.yellow}: Assessed daily, able to capture fluctuations
+  - [Cued]{.yellow}: Individuals were prompted to reflect on their risk
+  - [Contextualized]{.yellow}: Final item in survey, required first reflecting on nine relevant risk factors
+
+:::
+
+::: {.column width="30%"}
+![](https://raw.githubusercontent.com/jjcurtin/study_insight/main/images/ema_adtl_qs_2.png)
+:::
+
+::::
+
+::: {.notes}
+Ecological momentary assessment (EMA) offers a method by which individuals can self-monitor both densely and longitudinally
+:::
+
 ## Outcome: Lapse
 
 :::: {.columns}
@@ -248,9 +369,9 @@ Ecological momentary assessment (EMA) offers a method by which individuals can s
 ::::
 
 ::: {.notes}
-justify lapse choice BRIEFLY: clearly defined, observable, have temporally precise onsets and offsets. lapses always precede relapse and can be an early warning sign for intervention. maladaptive responses to a lapse can undermine recovery in itself
+Our outcome was lapse, which we defined as a single instance of goal-inconsistent use. As a reminder, our sample had a goal of abstinence, so any drinking was goal-inconsistent.
 
-connect to sample w goal of abstinence, any drinking = goal-inconsistent. made our outcome more homogeneous
+We chose to use lapse as our outcome because it is observable, has a temporally precise onset and offset, and is more clearly defined than a broader outcome like relapse. Lapses also always preceded relapse and can thereby be an early warning sign for intervention.
 :::
 
 ## Outcome: Lapse
@@ -261,7 +382,7 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
 
 - [Lapse]{.yellow}: A single instance of goal-inconsistent alcohol use
 
-- Lapses were assessed via an additional EMA item:
+- Lapses were assessed via EMA (first item on all 4 daily surveys):
 
 > "Have you drank any alcohol that you have not yet reported?
 
@@ -281,7 +402,7 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
 
 - [Lapse]{.yellow}: A single instance of goal-inconsistent alcohol use
 
-- Lapses were assessed via an additional EMA item:
+- Lapses were assessed via EMA (first item on all 4 daily surveys):
 
 > "Have you drank any alcohol that you have not yet reported?
 
@@ -302,11 +423,7 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
 ## Lapse labels
 
 ::: {.incremental}
-- Our outcomes were [one-week windows]{.yellow} that began immediately following the submission of the daily EMA survey
-
-  - Windows that contained any portion of a reported lapse were labeled as [lapse]{.yellow}
-  
-  - Windows that did not contain a lapse were labeled as [no lapse]{.yellow}
+- Our outcomes were [one-week windows]{.yellow} that began immediately following the submission of the daily EMA survey and were labeled as [lapse]{.yellow} or [no lapse]{.yellow}
 
 - Total N observations (i.e., 1-week windows): 9845
 
@@ -315,102 +432,85 @@ connect to sample w goal of abstinence, any drinking = goal-inconsistent. made o
   - No lapse: 7403 (75.2%)
 :::
 
-## Model configurations
+## Model training, selection, & evaluation
+
+::::: {.columns}
+
+:::: {.column width="60%"}
 
 ::: {.incremental}
 - Single predictor in each model: 
-
-  - Dynamic self-monitoring: most recent self-monitoring score
+  - [Dynamic self-monitoring]:{.yellow} most recent self-monitoring score from EMA item
+  - [Static risk assessment]:{.yellow} AASE total score (same score for all outcome windows)
   
-  - Static risk assessment: AASE total score (same score for all outcome windows)
+- Outcome: next-week drinking
+::: 
+
+::::
+
+:::: {.column width="40%"}
+
+::::
+
+::::: 
+
+## Model training, selection, & evaluation
+
+::::: {.columns}
+
+:::: {.column width="60%"}
+
+- Single predictor in each model: 
+  - [Dynamic self-monitoring]:{.yellow} most recent self-monitoring score from EMA item
+  - [Static risk assessment]:{.yellow} AASE total score (same score for all outcome windows)
   
 - Outcome: next-week drinking
 
-- Model configurations used the xgboost algorithm, various types of resampling, and sensible hyperparameter values
-::: 
+- Models are trained and evaluated using [cross-validation]{.yellow}
+  - Evaluated in *held-out data* (i.e., data not used for training)
+  - Produces 30 independent estimates of model performance
+::::
 
 ::: {.notes}
-  - Algorithm xgboost (tree-based algorithm)
-  - Upsampling, downsampling, SMOTE, and no resampling to adjust majority/minority class ratios
-  - Tuned values for hyperparameters mtry, learning rate, and tree depth; others were set to defaults
-:::
-
-## Model training, selection, and evaluation
-
-::: {.columns}
-
-:::: {.column width="60%"}
-- Models are trained, selected, and evaluated using [nested k-fold cross-validation]{.yellow}
-
-::::
-
-:::: {.column width="40%"}
-
-::::
 
 :::
-
-::: {.notes}
-for people who actually know/care, we used 3 repeats of 10-fold CV on the outer fold and 1 repeat of 10-fold CV on the inner fold
-
-:::
-
-## Model training, selection, and evaluation
-
-::: {.columns}
-
-:::: {.column width="60%"}
-- Models are trained, selected, and evaluated using [nested k-fold cross-validation]{.yellow}
-
-- Key details:
-  - Training, selection, and evaluation happens in different data
-  - Grouped by participant
-  - Produces 30 independent estimates of model performance in new data
-
-::::
 
 :::: {.column width="40%"}
 ![](https://raw.githubusercontent.com/jjcurtin/study_insight/main/images/cross_validation.png)
 ::::
 
-:::
+::::: 
 
-::: {.notes}
-for those of you who know or care LESS about those methodological details, let me walk you through what you DO need to know:
+## Model training, selection, & evaluation
 
-walk through CV illustration. highlight key points with goal of understanding eventual model comparison analyses
-:::
-
-## Model training, selection, and evaluation
-
-::: {.columns}
+::::: {.columns}
 
 :::: {.column width="60%"}
-- Models are trained, selected, and evaluated using [nested k-fold cross-validation]{.yellow}
 
-- Key details:
-  - Training, selection, and evaluation happens in different data
-  - Grouped by participant
-  - Produces 30 independent estimates of model performance in new data
+- Single predictor in each model: 
+  - [Dynamic self-monitoring]:{.yellow} most recent self-monitoring score from EMA item
+  - [Static risk assessment]:{.yellow} AASE total score (same score for all outcome windows)
+  
+- Outcome: next-week drinking
 
+- Models are trained and evaluated using [cross-validation]{.yellow}
+  - Evaluated in *held-out data* (i.e., data not used for training)
+  - Produces 30 independent estimates of model performance
+  
 - Model performance evaluated on [area under the ROC curve (auROC)]{.yellow}
   - Chance performance: **auROC = 0.5**
   - Perfect prediction: **auROC = 1.0**
-
 ::::
 
 :::: {.column width="40%"}
 ![](https://raw.githubusercontent.com/jjcurtin/study_insight/main/images/cross_validation.png)
 ::::
 
-:::
+::::: 
 
 ::: {.notes}
 describe auROC in plain terms:
 - how well our model can discriminate between lapse & no lapse cases
-- for those familiar, auROC is a performance measure that takes into account both sensitivity and specificity
-- in plainer terms, this means it puts weight on both false positives and false negatives
-- it is also insensitive to class imbalance, which makes it helpful when you don't have similar numbers of positive (lapse) and negative (no lapse) cases
 - auROC ranges from 0.5 (chance) to 1.0 (perfect prediction, every case correctly classified)
 :::
 
@@ -423,17 +523,17 @@ describe auROC in plain terms:
 
 - [Model performance]{.yellow}: posterior probability distributions around model performance --> do they include 0.5?
 
-- [Model comparison]{.yellow}: posterior probability distributions around difference in model performance --> do they include 0?
+- [Model comparison]{.yellow}: probability (% chance) that one model performs better than another
 :::
 
 ::: {.notes}
-we have 30 held-out estimates from each model, so can compare performance using these independent estimates & bayesian approach, reference tidymodels/tidyposterior methods
+we have 30 held-out estimates from each model, so can compare these performance estimates using a bayesian hierarchical generalized linear model, following recommendations from the tidymodels team
 
-explain posterior probability distributions
+these models produce posterior probability distributions, which are distributions of the likelihood of the model's performance given our data
 
-Followed recommendations from tidymodels team, random intercepts for fold and repeat (folds nested within repeats)
+to determine whether a model has predictive signal, we can see whether that posterior probability distribution includes 0.5 (chance performance)
 
-Regressed the auROCs from the 30 test sets as a function of assessment type (dynamic vs. static)
+we can also compare these distributions from our two models to determine the probability that one model performs better than another
 :::
 
 ## Results: Dynamic vs. static self-monitoring
@@ -445,15 +545,7 @@ we can start by comparing each model against 0.5 (chance performance) to see if 
 
 AASE performance - some signal, unsurprising given extant literature and continued use in clinical practice! Individuals can predict their lapses on-study slightly more accurately than chance performance
 
-dynamic self-monitoring allows our participants to do SO MUCH better! makes sense because we are assessing a process that we know to be dynamic. they can now quite accurately predict their alcohol use in the coming week
-:::
-
-## Results: Dynamic vs. static self-monitoring
-
-{{< embed ../notebooks/ana_bayes_insight.qmd#fig-post-contrasts-sm >}}
-
-::: {.notes}
-statistically much better (unsurprising given previous slide)
+dynamic self-monitoring allows our participants to do SO MUCH better! 99.99% chance that this dynamic model predicts better than the static risk model. makes sense because we are assessing a process that we know to be dynamic. they can now quite accurately predict their alcohol use in the coming week
 
 contextualize ~.2 increase as 40% of possible auROC change - that's a HUGE effect size!
 :::
@@ -510,119 +602,34 @@ Does not offer guidance as to what to DO next - no information about why they're
 
 ## Purpose {.larger}
 
-/ 
+\
 
-/ 
+\
 
-/ 
-
+\
 
 [Can we obtain [more accurate, more clinically useful predictions]{.yellow} by taking advantage of additional EMA data?]
 
 ::: {.notes}
-We will build a model using more EMA data as inputs but with the same 1-week windows as outcomes. We'll follow our same model comparison approach and see what we gain with these additional data.
+We will build a model using all the EMA data from all items on the 4x daily surveys as inputs but with the same 1-week windows as outcomes. We'll follow our same model comparison approach and see what we gain with these additional data.
 :::
 
-## EMA
-
-:::: {.columns}
-
-::: {.column width="70%"}
-- Self-monitoring was collected as part of a 10-item EMA survey
-:::
-
-::: {.column width="30%"}
-
-:::
-
-::::
-
-## EMA
-
-:::: {.columns}
-
-::: {.column width="70%"}
-- Self-monitoring was collected as part of a 10-item EMA survey
-
-  - Any new lapses
-  - 6 current-state risk factors
-:::
-
-::: {.column width="30%"}
-![](https://raw.githubusercontent.com/jjcurtin/study_insight/main/images/ema_adtl_qs_1.png)
-:::
-
-::::
-
-## EMA
-
-:::: {.columns}
-
-::: {.column width="70%"}
-- Self-monitoring was collected as part of a 10-item EMA survey
-
-  - Any new lapses
-  - 6 current-state risk factors
-  - 2 additional next-week likelihood questions (e.g., likelihood of a stressful event)
-  - Likelihood of next-week drinking (self-monitoring)
-
-:::
-
-::: {.column width="30%"}
-![](https://raw.githubusercontent.com/jjcurtin/study_insight/main/images/ema_adtl_qs_2.png)
-:::
-
-::::
-
-## EMA
-
-:::: {.columns}
-
-::: {.column width="70%"}
-- Self-monitoring was collected as part of a 10-item EMA survey
-
-  - Any new lapses
-  - 6 current-state risk factors
-  - 2 additional next-week likelihood questions (e.g., likelihood of a stressful event)
-  - Likelihood of next-week drinking (self-monitoring)
-
-- EMA surveys were sent [four times daily]{.yellow}
-  - Morning EMA survey contained all 10 items listed above
-  - Three remaining EMA surveys contained the first 7 items only (no next-week likelihood questions), spaced throughout the day
-
-:::
-
-::: {.column width="30%"}
-
-:::
-
-::::
-
-<!-- 
-## Feature engineering
-
-[Feature engineering]{.yellow} is the process of turning raw data into model inputs that can offer predictive value
-
-::: {.incremental}
-- We derived features from EMA items including:
-  - Most recent scores
-  - Average scores within recent epochs (e.g., mean in past day, past 3 days)
-  - Change scores (e.g., change from baseline)
-:::
--->
-
-## Model configurations
+## Model training, selection, & evaluation
 
 ::: {.incremental}
 - Predictors in each model: 
 
-  - [Dynamic self-monitoring only]{.yellow}: most recent self-monitoring score (no feature engineering, single predictor)
+  - [Static risk]{.yellow}: total AASE score only
+
+  - [Dynamic self-monitoring]{.yellow}: most recent self-monitoring score
   
-  - [All EMA]{.yelllow}: all features built from 4X daily EMA surveys
+  - [All EMA]{.yelllow}: all items from 4X daily EMA surveys
 
 - Outcome: next-week drinking
 
-- Model configurations used the xgboost algorithm, various types of resampling, and sensible hyperparameter values
+- Same model training procedure using cross-validation to produce 30 independent estimates of model performance
+
+- Same approach to evaluate and compare model performance across models
 ::: 
 
 ::: {.notes}
@@ -634,18 +641,8 @@ we fit this full-feature model using the same nested CV process that produced 30
 {{< embed ../notebooks/ana_bayes_insight.qmd#fig-post-model-all >}}
 
 ::: {.notes}
-re-anchor in auROC
+re-anchor in auROC. talk about probabilities that one model is better than the other. re-anchor across 3 model performance
 :::
-
-## Results: All EMA features vs. self-monitoring alone
-
-{{< embed ../notebooks/ana_bayes_insight.qmd#fig-post-contrasts-ema >}}
-
-::: {.notes}
-showing BENEFIT of full ema (ema - dynamic sm only; i.e., positive direction = advantage of full EMA model)
-:::
-
-<!-- consider slide with SHAP plot here to show that other variables are important globally & which ones they are? -->
 
 ## Application: How can we use this?
 
@@ -673,7 +670,7 @@ showing BENEFIT of full ema (ema - dynamic sm only; i.e., positive direction = a
 ## Conclusions
 
 ::: {.incremental}
-- Though above chance performance, individuals cannot predict ongoing risk of lapse during recovery using static assessment
+- Though above chance performance, individuals can predict ongoing risk of lapse during recovery using static assessment with extremely low accuracy
 
 - Dynamic self-monitoring via EMA allows individuals to predict changing next-week lapse risk relatively accurately
 
@@ -691,19 +688,17 @@ showing BENEFIT of full ema (ema - dynamic sm only; i.e., positive direction = a
 
 <!-- 
 static model will CONTINUE to degrade over time
-better phrasing about AASE on last slide, can predict but not well
-keep organization
+
 more images - eg putting up ema question for sm, dynamic lapse risk from john's presentations, graphical representation of demographics
-can't spend a minute on nested cv - used a resampling approach with 30 held-out folds, and by held-out i mean not used for training
-cut model configurations
+
 labels - more general. whether they lapsed in the next week after each survey, the end
+
 ema - introduce everything upfront, or at least more context. frame as why dsm = contextualized
+
 in addition to getting probabilities, there are techniques that can identify the immportance of different predictors to affecting probabilities. can affect globally or at an observation level. then we could know which risk factors were contributing & select interventions to target those risk factors - cut dtx discussion, replace with what does this model give us & why iis that more clinically useful? use example risk factor paired with treatment module
-consider cutting second figures around difference
-say probability that one is better than the other (essentially 100%)
-consider final analyses show all 3 models to contextualize
+
 clearer "in the top panel in red"
+
 contextualize dsm item in abstinence sample
-add dotted line at 0.5 auROC?
 
 -->
