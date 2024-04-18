@@ -235,7 +235,7 @@ ci_ema <- ci |>
 ```
 
 ```{r}
-#| label: fig-post-model-all
+#| label: post-model-all
 
 pp_tidy %>% 
   mutate(model = factor(model, 
@@ -265,7 +265,7 @@ pp_tidy %>%
 ```
 
 ```{r}
-#| label: fig-post-model-sm
+#| label: post-model-sm
 
 pp_tidy %>% 
   mutate(model = factor(model, 
@@ -275,7 +275,7 @@ pp_tidy %>%
                                    "Dynamic Self-Monitoring", 
                                    "All EMA")),
          y = 1000) %>%
-  filter(model != "All Features") |> 
+  filter(model != "All EMA") |> 
   ggplot() + 
   geom_histogram(aes(x = posterior, fill = model), 
                  color = "black", alpha = .4, 
@@ -296,7 +296,7 @@ pp_tidy %>%
 ```
 
 ```{r}
-#| label: fig-post-model-ema
+#| label: post-model-ema
 
 pp_tidy %>% 
   mutate(model = factor(model, 
@@ -352,7 +352,7 @@ ci_ema <- ci |>
 ```
 
 ```{r}
-#| label: fig-post-contrasts-all
+#| label: post-contrasts-all
 
 pp %>% 
   tidy(seed = 123) %>%   
@@ -388,7 +388,7 @@ pp %>%
 ```
 
 ```{r}
-#| label: fig-post-contrasts-sm
+#| label: post-contrasts-sm
 
 pp %>% 
   tidy(seed = 123) %>%   
@@ -425,7 +425,7 @@ pp %>%
 ```
 
 ```{r}
-#| label: fig-post-contrasts-ema
+#| label: post-contrasts-ema
 
 pp %>% 
   tidy(seed = 123) %>%   
